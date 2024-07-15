@@ -5,4 +5,4 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
 
 # LocateMe
-A web application that utilizes interactive maps to pinpoint a user's location and seamlessly send the data to the backend using REST API
+A web application that utilizes interactive map to pinpoint a user's location and seamlessly send the data to the backend using REST API
