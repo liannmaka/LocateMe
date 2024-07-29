@@ -1,12 +1,12 @@
 <script setup>
 import maplibregl from 'maplibre-gl';
 import { ref, onMounted, reactive } from 'vue';
-import { getUserLocation } from '@/utils/userLocation';
+import { getUserLocation } from '@/utils/getUserLocation';
 
 
 // Map Resource Details
     const mapName = 'LocateMe.map';
-    const apiKey = import.meta.env.VITE_API_KEY;
+    const apiKey = import.meta.env.VITE_AWS_API_KEY;
     const region = 'eu-north-1';
 
 
