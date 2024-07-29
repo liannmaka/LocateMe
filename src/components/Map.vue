@@ -15,7 +15,7 @@ const initializeMap = async (lngLat) => {
     container: 'map',
     style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
     center: lngLat,
-    zoom: 10,
+    zoom: 15,
 })
 
 mapWrapper.addControl(new maplibregl.NavigationControl(), 'top-left');
