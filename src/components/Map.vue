@@ -1,13 +1,13 @@
 <script setup>
 import maplibregl from 'maplibre-gl';
 import { ref, onMounted, reactive } from 'vue';
-import { getUserLocation } from '@/utils/userLocation';
-
+import { getUserLocation } from '@/utils/getUserLocation';
+import {MapPinIcon} from '@heroicons/vue/24/solid'
 
 // Map Resource Details
-    const mapName = 'LocateMe.map';
-    const apiKey = import.meta.env.VITE_API_KEY;
-    const region = 'eu-north-1';
+const mapName = 'LocateMe.map';
+const apiKey = import.meta.env.VITE_AWS_API_KEY;
+const region = 'eu-north-1';
 
 
 const initializeMap = async (lngLat) => {
@@ -47,6 +47,7 @@ const location = reactive({
 onMounted(() => {
     getUserLocation({enableHighAccuracy: true, timeout: 5000})
     .then((coords) => {
+        //refactor to know when location changes
         location.lngLat = [coords.longitude, coords.latitude];
         main()
     })
@@ -57,7 +58,14 @@ onMounted(() => {
 </script>
 
 <template>
-<div id='map'></div>
+    <div class="relative">
+        <!-- refactor to be a seperate component-->
+        <div class="bg-white absolute z-50 p-2 rounded right-5 lg:right-10 top-5 shadow-lg flex items-center gap-2">
+            <MapPinIcon class="size-4 text-black-500"></MapPinIcon>
+            <p class="text-sm font-light">{{ location?.lngLat?.toString() }}</p>
+        </div>
+        <div id='map' class="overlay"></div>
+    </div>
 </template>
 
 <style scoped>
