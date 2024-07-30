@@ -9,7 +9,6 @@ const mapName = 'LocateMe.map';
 const apiKey = import.meta.env.VITE_AWS_API_KEY;
 const region = 'eu-north-1';
 
-
 const initializeMap = async (lngLat) => {
    const mapWrapper = new maplibregl.Map({
     container: 'map',
