@@ -8,17 +8,25 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy-dev": "s3-deploy './dist/**' --cwd './dist/' --region eu-north-1 --bucket locate-me",
-    "release-dev": "npm run build && npm run deploy-dev"
+    "release-dev": "npm run build && npm run deploy-dev",
+    "release-buggie": "git add . && git commit -m 'project files updated' && git push"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.22",
+    "@heroicons/vue": "^2.1.5",
+    "@iconoir/vue": "^7.8.0",
     "maplibre-gl": "^4.5.0",
     "pinia": "^2.1.7",
     "s3-bucket": "^1.0.3",
     "s3-deploy": "^1.4.0",
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7",
     "vite": "^5.3.1"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
