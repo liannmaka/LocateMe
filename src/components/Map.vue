@@ -1,10 +1,13 @@
 <script setup>
 import maplibregl from 'maplibre-gl';
-import { ref, onMounted, reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 import { getUserLocation } from '@/utils/getUserLocation';
-import { MapPin, Group, Shop, PeopleTag, HouseRooms, Bbq, Delivery } from '@iconoir/vue';
-
 import custom_user_marker from '../assets/map_icons/user.svg'
+import StoreUtils from '../utils/storeUtils'
+
+
+const dispatch = StoreUtils.dispatch()
+
 
 // Map Resource Details
 const mapName = 'LocateMe.map';
@@ -30,17 +33,27 @@ const main = async () => {
     const authHelper = await amazonLocationAuthHelper.withAPIKey(apiKey);
 
     // Initialize map and Amazon Location SDK client:
-    const map = await initializeMap(location.lngLat, location.zoom);
+    const map = await initializeMap(mapValue.lngLat, mapValue.zoom);
 
     // prevents from draging the map around
     map.dragPan.disable();
+
+    // Add geolocate control to the map.
+    // map.addControl(
+    //     new maplibregl.GeolocateControl({
+    //         positionOptions: {
+    //             enableHighAccuracy: true
+    //         },
+    //         trackUserLocation: true
+    //     })
+    // );
 
     map.on('load', async () => {
         map.addSource('center', {
             'type': 'geojson',
             'data': {
                 'type': 'Point',
-                'coordinates': location.lngLat
+                'coordinates': mapValue.lngLat
             }
         });
 
@@ -52,76 +65,43 @@ const main = async () => {
         ...authHelper.getLocationClientConfig(), // Provides configuration required to make requests to Amazon Location
     });
 
-    let marker = new maplibregl.Marker({ draggable: false }).setLngLat(location.lngLat).addTo(map)
+    let marker = new maplibregl.Marker({ draggable: false }).setLngLat(mapValue.lngLat).addTo(map)
 }
 
 // User Location
-const location = reactive({
+const mapValue = reactive({
     error: null,
     lngLat: null,
-    zoom: 15
+    zoom: 15,
+    show: false,
+    isAddress: false
 });
 
-function updateMapZoom() {
+function updateMapZoom() { }
 
 
 
-}
+
 
 
 onMounted(() => {
+
     getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
         .then((coords) => {
             //refactor to know when location changes
-            location.lngLat = [coords.longitude, coords.latitude];
+            mapValue.lngLat = [coords.longitude, coords.latitude];
+            StoreUtils.commit('map', 'lngLat', mapValue.lngLat)
             main()
+           
         })
         .catch((err) => {
-            location.error = err.message;
+            mapValue.error = err.message;
         })
 })
 </script>
 
 <template>
-    <div class="relative flex">
-        <!-- refactor to be a seperate component 1-->
-        <div @click="updateMapZoom()"
-            class="bg-white cursor-pointer absolute p-2 rounded right-1 lg:right-10 z-40 top-3 shadow-lg flex items-center gap-2">
-            <MapPin class="size-4 text-black-500"></MapPin>
-            <p class="text-sm font-light">{{ location?.lngLat?.toString() }}</p>
-        </div>
-        <!-- refactor to be a seperate component 1-->
-
-        <!-- refactor to be a seperate component 2-->
-        <div
-            class="max-w-10 hover:max-w-60 transition-all ease-in-out delay-150 duration-300 h-screen cursor-pointer p-2 gap-2">
-
-            <ul class="min-w-60">
-                <!-- hover:-translate-y-1 -->
-                <li class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                    <Group class="size-4 text-black-500"></Group> My Friends
-                </li>
-                <li class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                    <PeopleTag class="size-4 text-black-500"></PeopleTag> Hangis
-                </li>
-                <li class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                    <Shop class="size-4 text-black-500"></Shop> Online Shop
-                </li>
-                <li class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                    <Delivery class="size-4 text-black-500"></Delivery>Delivery/Dispatch
-                </li>
-                <li class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                    <HouseRooms class="size-4 text-black-500"></HouseRooms> BMG Lagos
-                </li>
-                <li class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                    <Bbq class="size-4 text-black-500"></BBq>Chefs
-                </li>
-            </ul>
-        </div>
-        <!-- refactor to be a seperate component 2-->
-
-        <div id='map' class="w-full h-screen"></div>
-    </div>
+    <div id='map' class="w-full h-screen"></div>
 </template>
 
 <style scoped>
