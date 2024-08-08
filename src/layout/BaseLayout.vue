@@ -1,15 +1,18 @@
 <script setup>
-import Map from '../components/Map.vue';
-import LocationBar from '../components/LocationBar.vue';
-import SideBar from '../components/SideBar.vue';
+import Map from '../components/location/Map.vue';
+import LocationBar from '../components/location/LocationBar.vue';
+import SideBar from '../components/navigations/SideBar.vue';
 
 
 </script>
 
 <template>
         <div class="relative flex">
-            <LocationBar></LocationBar>
+             <!--positon - absolute-->
+             <!--this sidebar displays only on desktop ang larger screens-->
             <SideBar></SideBar>
+            
+            <slot name="screens"></slot>
 
             <Map></Map>
         </div>

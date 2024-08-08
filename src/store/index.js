@@ -1,4 +1,4 @@
-import { useMapStore } from "./modules/map"
+import { useMapStore } from "./modules/map/map"
 
 const stores = {
     map: useMapStore(),
