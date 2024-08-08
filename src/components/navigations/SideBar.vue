@@ -40,16 +40,15 @@ onMounted(() => {
      <div @click="toggleMenu('open')" id="mobile_menu" class="bg-white cursor-pointer absolute p-2 rounded right-10 lg:hidden md:hidden z-20 top-3 shadow-lg flex items-center gap-2">
             <Menu width="18" color="#000"></Menu>
 
-            <!-- <li class="text-sm absolute flex items-center gap-2" @click="toggleMenu('open')" id="menu_open">
-            </li> -->
+            
         </div>
 
 
      <!-- refactor to be a seperate component 2-->
-        <div class="max-w-10 transition-all hidden md:block lg:block ease-out absolute z-30 bg-white delay-10 duration-100 h-screen cursor-pointer p-2 gap-2"
+        <div class="transition-all hidden md:block lg:block ease-out absolute z-30 bg-white delay-10 duration-100 h-screen cursor-pointer p-2 gap-2"
                 id="menu_tab">
 
-                <ul class="min-w-10 transition-all ease-out delay-10 duration-100" id="ul_menu_tab">
+                <ul class="transition-all ease-out delay-10 duration-100" id="ul_menu_tab">
                     <!-- hover:-translate-y-1 -->
                     <div class="relative p-2 size-12">
                         <li class="text-sm absolute flex items-center gap-2" @click="toggleMenu('open')" id="menu_open">
@@ -74,10 +73,10 @@ onMounted(() => {
                         <Delivery width="18" color="#000"></Delivery> <span class="text-sm">Logistics</span>
                     </li>
                     <li class="flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                        <HouseRooms width="18" color="#000"></HouseRooms> <span class="text-sm">BMG Lagos</span>
+                        <HouseRooms width="18" color="#000"></HouseRooms> <span class="text-sm">BM Guest</span>
                     </li>
                     <li class="flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                        <Bbq width="18" color="#000"></BBq><span class="text-sm">Chefs</span>
+                        <Bbq width="18" color="#000"></BBq><span class="text-sm">BM Chef</span>
                     </li>
                 </ul>
         </div>

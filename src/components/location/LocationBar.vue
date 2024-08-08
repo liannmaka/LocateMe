@@ -1,6 +1,6 @@
 <script setup>
 import { MapPin } from '@iconoir/vue';
-import StoreUtils from '../utils/storeUtils'
+import StoreUtils from '../../utils/storeUtils'
 import { reactive } from 'vue';
 const dispatch = StoreUtils.dispatch()
 

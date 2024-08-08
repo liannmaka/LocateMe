@@ -2,8 +2,8 @@
 import maplibregl from 'maplibre-gl';
 import { onMounted, reactive } from 'vue';
 import { getUserLocation } from '@/utils/getUserLocation';
-import custom_user_marker from '../assets/map_icons/user.svg'
-import StoreUtils from '../utils/storeUtils'
+import StoreUtils from '../../utils/storeUtils'
+import LocationBar from './LocationBar.vue';
 
 
 const dispatch = StoreUtils.dispatch()
@@ -92,7 +92,7 @@ onMounted(() => {
             mapValue.lngLat = [coords.longitude, coords.latitude];
             StoreUtils.commit('map', 'lngLat', mapValue.lngLat)
             main()
-           
+
         })
         .catch((err) => {
             mapValue.error = err.message;
@@ -101,6 +101,7 @@ onMounted(() => {
 </script>
 
 <template>
+    <LocationBar></LocationBar>
     <div id='map' class="w-full h-screen"></div>
 </template>
 

@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useMapStore = defineStore('mapStore', {
     state: () => ({
         loading: false,
-        lngLat:['kdkdkkd', 'sksksks'],
+        lngLat:[6.5244, 3.3792],
         address:null
     }),
 
