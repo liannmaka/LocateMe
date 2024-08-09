@@ -2,12 +2,14 @@
 import Map from '../components/location/Map.vue';
 import LocationBar from '../components/location/LocationBar.vue';
 import SideBar from '../components/navigations/SideBar.vue';
+import NavBar from '../components/navigations/NavBar.vue'
 
 
 </script>
 
 <template>
         <div class="relative flex">
+            <NavBar/>
              <!--positon - absolute-->
              <!--this sidebar displays only on desktop ang larger screens-->
             <SideBar></SideBar>
@@ -15,8 +17,7 @@ import SideBar from '../components/navigations/SideBar.vue';
             <slot name="screens"></slot>
 
             <Map></Map>
-        </div>
-
+        </div>     
 </template>
 
 <style scoped></style>
