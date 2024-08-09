@@ -23,18 +23,18 @@ const links = [
 
 <template>
    <nav class="md:hidden z-50 fixed bottom-0 bg-white w-full">
-        <div class="flex justify-center gap-12 py-4">
+        <div class="flex justify-center gap-14 py-4">
             <router-link
             v-for="(link, index) in links"
             :key="index"
             :to="link.to"
             >
-                <div class="flex justify-center">
+                <div class="flex justify-center mb-2">
                     <component
                         :is="link.icon"   
                         />
                 </div> 
-                <span class="text-xs text-center">{{link.name}}</span>
+                <div class="text-xs">{{link.name}}</div>
             </router-link>
         </div>
    </nav> 
