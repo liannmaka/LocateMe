@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
-import { Group, Shop, PeopleTag, HouseRooms, Bbq, Delivery, Menu, MenuScale } from '@iconoir/vue';
+import { Shop, PeopleTag, HouseRooms, Bbq, Delivery, Menu, MenuScale } from '@iconoir/vue';
 
 function toggleMenu(toggleValue) {
     const menuOpen = document.getElementById('menu_open');
@@ -60,9 +60,7 @@ onMounted(() => {
                             <MenuScale width="18" color="#000"></MenuScale>
                         </li>
                     </div>
-                    <li class="flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
-                        <Group width="18" color="#000"></Group> <span class="text-sm"> My Friends</span>
-                    </li>
+                   
                     <li class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
                         <PeopleTag width="18" color="#000"></PeopleTag> <span class="text-sm"> Hangis</span>
                     </li>

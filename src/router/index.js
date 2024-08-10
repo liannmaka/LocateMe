@@ -1,4 +1,4 @@
-import {createMemoryHistory,  createRouter } from 'vue-router'
+import {createWebHistory,  createRouter } from 'vue-router'
 import { appRoutes } from './routes/app_routes'
 
 
@@ -7,7 +7,7 @@ const baseRoute = initialRoute.concat(appRoutes)
 
 
 export const router = createRouter({
-    history:createMemoryHistory(),
+    history:createWebHistory(),
     routes:baseRoute,
     scrollBehavior() {
         // always scroll to top

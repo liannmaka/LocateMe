@@ -2,12 +2,8 @@
 import maplibregl from 'maplibre-gl';
 import { onMounted, reactive } from 'vue';
 import { getUserLocation } from '@/utils/getUserLocation';
-import StoreUtils from '../../utils/storeUtils'
-import LocationBar from './LocationBar.vue';
-
-
-const dispatch = StoreUtils.dispatch()
-
+import StoreUtils from '../utils/storeUtils'
+import BaseLayout from '../layout/BaseLayout.vue';
 
 // Map Resource Details
 const mapName = 'LocateMe.map';
@@ -101,8 +97,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <LocationBar></LocationBar>
-    <div id='map' class="w-full h-screen"></div>
+    <BaseLayout v-slot:screens>
+        <div id='map' class="w-full h-screen"></div>
+    </BaseLayout>
+   
 </template>
 
 <style scoped>
