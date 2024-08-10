@@ -6,6 +6,7 @@ import LocationBar from '../components/location/LocationBar.vue';
 import { UserCircle,Group } from '@iconoir/vue';
 import StoreUtils from '../utils/storeUtils';
 import { ref } from 'vue';
+import NavBar from '../components/navigations/NavBar.vue'
 
 const user = StoreUtils.get('auth', 'getCurrentUser')
 const showLoginModal = ref(false)
@@ -25,6 +26,7 @@ const handleShowUserModal = () => {
     <div class="relative flex">
         <!--positon - absolute-->
         <!--this sidebar displays only on desktop ang larger screens-->
+        <NavBar/>
         <SideBar></SideBar>
         <div class="absolute p-2 rounded right-0 lg:right-10 z-40 top-3 flex items-start gap-2">
             <LocationBar></LocationBar>
@@ -47,8 +49,7 @@ const handleShowUserModal = () => {
         <slot name="screens"></slot>
 
 
-    </div>
-
+    </div>  
 </template>
 
 <style scoped></style>
