@@ -4,6 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import App from '@/App.vue';
 import './style.css'
 import { router } from './router';
+import 'animate.css';
 
 const app = createApp(App);
 const pinia = createPinia();

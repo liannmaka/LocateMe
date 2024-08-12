@@ -1,17 +1,17 @@
 export const appRoutes = [
     {
-        name: "BaseLayout",
+        name: "LDP",
         path: '/',
-        component: () => import('../../layout/BaseLayout.vue'),
+        component: () => import('../../view/LandingPage.vue'),
         meta: {authRequired:false, layout:'app'},
-        children:[
-            {
-                name: '',
-                path: '',
-                // component: () => import(''),
-                meta: {authRequired:false, layout:'app'}, 
-            }
-        ]
+
+    },
+    {
+        name: "MAP",
+        path: '/map',
+        component: () => import('../../view/Map.vue'),
+        meta: {authRequired:false, layout:'app'},
+       
     },
     
 ]

@@ -14,8 +14,8 @@ const links = [
         icon: h(Bbq, { color:"#000" })
     },
     {
-        to:'/online-shop',
-        name: 'Online Shop',
+        to:'/market-place',
+        name: 'MarketPlace',
         icon: h(Shop, { color:"#000" })
     }
 ]
