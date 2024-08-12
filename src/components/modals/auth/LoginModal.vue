@@ -11,6 +11,7 @@ const close = (value) => {
     emit('close', value)
 }
 
+
 const authStage = computed(() => { return store.get('auth', 'getAuthStage') })
 
 </script>
@@ -25,7 +26,7 @@ const authStage = computed(() => { return store.get('auth', 'getAuthStage') })
                     <div class="p-4 mb-5 relative">
                         <div class="flex justify-between">
                             <div>
-                                <div class="text-left py-1 text-xl antialiased font-bold">Log in to Continue</div>
+                                <div class="text-left py-1 text-xl antialiased font-bold">SignUp/Login to Continue</div>
                                 <div class="text-left py-1 mb-3 antialiased text-base text-sm text-slate-500">Let's
                                     start with
                                     your whatsapp
@@ -62,6 +63,14 @@ const authStage = computed(() => { return store.get('auth', 'getAuthStage') })
                         <Button1 btn-type="button" btn-text="Continue" @click="store.commit('auth', 'authStage', '2')">
                         </Button1>
                     </div>
+
+                    <div class="py-3 mt-5">
+                    
+                    <p class="text-center word-break text-sm text-slate-500">  
+                        We’ll send a code to your whatsapp to confirm your number. Standard message and data rates apply. Privacy Policy
+
+                    </p>
+                </div>
 
 
                 </div>
@@ -107,12 +116,7 @@ const authStage = computed(() => { return store.get('auth', 'getAuthStage') })
                         <Button1 btn-type="button" btn-text="Verify">
                         </Button1>
                     </div>
-
-
-                </div>
-                <p class="text-sm text-black text-center hover:underline cursor-pointer">I don't have an account? <span></span></p>
-
-                <div class="py-3 mt-5">
+                    <div class="py-3 mt-5">
                     
                     <p class="text-center word-break text-sm text-slate-500">By creating an account, you
                         automatically
@@ -122,6 +126,11 @@ const authStage = computed(() => { return store.get('auth', 'getAuthStage') })
                         <span class="underline">Cookies Policy</span>
                     </p>
                 </div>
+
+                </div>
+                <!-- <p class="text-sm text-black text-center hover:underline cursor-pointer" @click="signUp(true)">I don't have an account? <span></span></p> -->
+
+               
             </div>
         </div>
 

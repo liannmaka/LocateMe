@@ -17,8 +17,8 @@ const mapValue = reactive({
 
 <template>
     <!-- refactor to be a seperate component 1-->
-    <div @click.stop="mapValue.show = !mapValue.show" class="transition-all ease-out delay-10 duration-100 bg-white cursor-pointer p-2 rounded shadow-lg flex items-center gap-2">
-        <MapPin width="18" color="#000"></MapPin>
+    <div @click.stop="mapValue.show = !mapValue.show" class="transition-all ease-out delay-10 duration-100 bg-white cursor-pointer p-2 rounded-full shadow-sm flex items-center gap-2">
+        <MapPin width="24" color="#000"></MapPin>
         <div @click.stop class="" v-if="mapValue.show">
             <p class="text-sm font-light underline" @click="mapValue.isAddress = !mapValue.isAddress">
                 {{ !mapValue?.isAddress ? 'show address' : 'show latitude and longitude' }}</p>

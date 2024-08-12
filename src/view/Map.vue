@@ -4,6 +4,7 @@ import { onMounted, reactive } from 'vue';
 import { getUserLocation } from '@/utils/getUserLocation';
 import StoreUtils from '../utils/storeUtils'
 import BaseLayout from '../layout/BaseLayout.vue';
+import Friends from "@/components/friends/Friends.vue";
 
 // Map Resource Details
 const mapName = 'LocateMe.map';
@@ -98,6 +99,7 @@ onMounted(() => {
 
 <template>
     <BaseLayout v-slot:screens>
+        <Friends></Friends>
         <div id='map' class="w-full h-screen"></div>
     </BaseLayout>
    
