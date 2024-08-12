@@ -33,7 +33,7 @@ const main = async () => {
     const map = await initializeMap(mapValue.lngLat, mapValue.zoom);
 
     // prevents from draging the map around
-    map.dragPan.disable();
+    map.dragPan.enable();
 
     // Add geolocate control to the map.
     // map.addControl(
@@ -100,7 +100,7 @@ onMounted(() => {
 <template>
     <BaseLayout v-slot:screens>
         <Friends></Friends>
-        <div id='map' class="w-full h-screen"></div>
+        <div id='map' class="w-full h-screen overflow-hidden"></div>
     </BaseLayout>
    
 </template>
