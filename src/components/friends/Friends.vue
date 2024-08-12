@@ -13,7 +13,7 @@ const friends = [
 </script>
 
 <template>
-  <div class="friends rounded-md absolute z-50 w-full md:w-auto lg:w-auto bottom-20 md:bottom-2 lg:bottom-2 bg-white md:right-2 lg:right-2 flex p-1.5">
+  <div class="friends rounded-md absolute z-20 w-full md:w-auto lg:w-auto bottom-20 md:bottom-2 lg:bottom-2 bg-white md:right-2 lg:right-2 flex p-1.5">
 
     <section class="flex items-center justify-start bg-white w-full h-auto gap-1 overflow-scroll">
       <div class="cursor-pointer p-2 hover:scale-105 shadow-md rounded-full">

@@ -8,5 +8,6 @@
 <style scoped>
 .modal_wrapper{
     background-color: #000000a3;
+    overflow:scroll;
 }
 </style>
