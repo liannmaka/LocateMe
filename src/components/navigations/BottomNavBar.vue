@@ -2,6 +2,7 @@
 import { h } from 'vue';
 import { MapPin, Bbq, Shop } from '@iconoir/vue';
 
+
 const links = [
      {
         to: '/map',
@@ -23,7 +24,8 @@ const links = [
 
 <template>
    <nav class="md:hidden z-40 fixed bottom-0 bg-white w-full">
-        <div class="flex justify-center gap-14 py-4">
+
+     <div class="flex justify-center gap-14 py-4">
             <router-link
             v-for="(link, index) in links"
             :key="index"
@@ -33,7 +35,7 @@ const links = [
                     <component
                         :is="link.icon"   
                         />
-                </div> 
+                </div>
                 <div class="text-xs">{{link.name}}</div>
             </router-link>
         </div>

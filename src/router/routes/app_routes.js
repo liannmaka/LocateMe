@@ -13,5 +13,12 @@ export const appRoutes = [
         meta: {authRequired:false, layout:'app'},
        
     },
+    {
+        name: "BMChef",
+        path: '/bm-chef',
+        component: () => import('../../view/BMChefs.vue'),
+        meta: {authRequired:false, layout:'app'},
+
+    },
     
 ]

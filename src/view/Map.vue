@@ -13,7 +13,7 @@ const region = 'eu-north-1';
 
 
 const initializeMap = async (lngLat, zoom) => {
-    const mapWrapper = new maplibregl.Map({
+    return new maplibregl.Map({
         container: 'map',
         style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
         center: lngLat,
@@ -22,7 +22,6 @@ const initializeMap = async (lngLat, zoom) => {
 
     //removed navigation control
     // mapWrapper.addControl(new maplibregl.NavigationControl(), 'top-left'); 
-    return mapWrapper
 }
 
 const main = async () => {
