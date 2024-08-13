@@ -19,7 +19,7 @@ const friends = [
       <div class="cursor-pointer p-2 hover:scale-105 shadow-md rounded-full">
         <Search width="24" color="#000"></Search>
       </div>
-      <img v-for="(i, index) in  friends" :src="i.name" :alt="index" class="flex w-16 h-16 rounded-full items-center justify-center gap-1 bg-white cursor-pointer p-2 hover:bg-green-500" />
+      <img v-for="(i, index) in  friends" :key="index" :src="i.name" :alt="index" class="flex w-16 h-16 rounded-full items-center justify-center gap-1 bg-white cursor-pointer p-2 hover:bg-green-500" />
       <div class="hover:scale-105 shadow-md rounded-full flex items-center justify-start gap-1 bg-white cursor-pointer p-2 w-auto">
         <UserPlus width="24" color="#000"></UserPlus>
       </div>
