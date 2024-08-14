@@ -21,6 +21,7 @@ const links = [
 ]
 </script>
 
+
 <template>
    <nav class="md:hidden z-50 fixed bottom-0 bg-white w-full">
         <div class="flex justify-center gap-14 py-4">
