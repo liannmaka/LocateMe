@@ -98,7 +98,6 @@ onMounted(() => {
         <Friends></Friends>
         <div id='map' class="w-full h-screen overflow-hidden"></div>
     </BaseLayout>
-   
 </template>
 
 <style scoped>
