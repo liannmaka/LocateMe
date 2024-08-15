@@ -18,12 +18,14 @@ const initializeMap = async (lngLat, zoom) => {
         style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
         center: lngLat,
         zoom: zoom,
+        attributionControl: false
     })
 
     //removed navigation control
     // mapWrapper.addControl(new maplibregl.NavigationControl(), 'top-left'); 
     return mapWrapper
 }
+
 
 const main = async () => {
     // Create an authentication helper instance using an API key
@@ -76,13 +78,7 @@ const mapValue = reactive({
 
 function updateMapZoom() { }
 
-
-
-
-
-
 onMounted(() => {
-
     getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
         .then((coords) => {
             //refactor to know when location changes
@@ -102,7 +98,6 @@ onMounted(() => {
         <Friends></Friends>
         <div id='map' class="w-full h-screen overflow-hidden"></div>
     </BaseLayout>
-   
 </template>
 
 <style scoped>
