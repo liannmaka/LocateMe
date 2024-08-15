@@ -17,7 +17,6 @@ const showLoginModal = ref(false)
 
 const handleClose = (value) => {
     showLoginModal.value = value
-    showSignUpModal.value = value
 }
 
 const handleShowUserModal = () => {

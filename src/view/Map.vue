@@ -20,8 +20,9 @@ const mapValue = reactive({
   isAddress: false,
   interval:null,
   timeToRender:0,
-  map: {},
-  marker: {}
+  map: null,
+  marker: null,
+  deviceSpeed:null
 });
 
 
@@ -61,37 +62,20 @@ const main = async () => {
 
 
 
-// onMounted( () => {
-//    getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
-//       .then((coords) => {
-//           mapValue.lngLat = [coords.longitude, coords.latitude];
-//           StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-//           main()
-//       })
-//       .catch((err) => {
-//         mapValue.error = err.message;
-//       });
-//
-//     watchUserLocation({ enableHighAccuracy: true, timeout: 5000 }).then((coords) => {
-//       mapValue.lngLat = [coords.longitude, coords.latitude];
-//       StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-//       mapValue.marker.setLngLat(mapValue.lngLat)
-//     }).catch((err) => {
-//       mapValue.error = err.message;
-//     });
-//
-// });
-
 onMounted(() => {
   // First, get the user's initial location
   getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
       .then((coords) => {
         // Set initial coordinates
+        console.log(coords)
         mapValue.lngLat = [coords.longitude, coords.latitude];
         StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+        mapValue.deviceSpeed =  coords.speed
 
         // Initialize the map and marker with the initial coordinates
-        main(); // Assuming this sets up the map
+        if(!mapValue.map){
+          main(); // Assuming this sets up the map
+        }
 
       })
       .catch((err) => {
@@ -106,7 +90,7 @@ onMounted(() => {
         StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
 
         // Update the marker's position on the map
-        if (mapValue.marker) {
+        if (mapValue.marker && mapValue.map) {
           mapValue.marker.setLngLat(mapValue.lngLat);
         }
       },
@@ -127,6 +111,7 @@ onMounted(() => {
 
 <template>
     <BaseLayout v-slot:screens>
+        <p>{{mapValue.deviceSpeed}}</p>
         <Friends></Friends>
         <div id='map' class="w-full h-screen overflow-hidden"></div>
     </BaseLayout>
