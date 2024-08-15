@@ -22,6 +22,7 @@ const links = [
 ]
 </script>
 
+
 <template>
    <nav class="md:hidden z-40 fixed bottom-0 bg-white w-full">
 

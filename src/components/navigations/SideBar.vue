@@ -76,29 +76,28 @@ onMounted(() => {
 
 
     <!-- refactor to be a seperate component 2-->
-    <aside class="transition-all hidden md:block lg:block ease-out  z-30 bg-white delay-10 duration-100 h-screen cursor-pointer p-2 gap-2"
+    <aside class="transition-all hidden md:block lg:block ease-out absolute z-30 bg-white delay-10 duration-100 h-screen cursor-pointer p-2 gap-2"
         id="menu_tab">
 
         <ul class="transition-all ease-out delay-10 duration-100" id="ul_menu_tab">
-            <!-- TODO:fix html semantics -->
-            <div class="relative p-2 size-12">
-                <p class="text-sm absolute flex items-center gap-2" @click="toggleMenu('open')" id="menu_open">
+            <!-- hover:-translate-y-1 -->
+            <section class="relative p-2 size-12">
+                <li class="text-sm absolute flex items-center gap-2" @click="toggleMenu('open')" id="menu_open">
                     <Menu width="18" color="#000"></Menu>
-                </p>
+                </li>
 
-                <p class="text-sm absolute flex items-center gap-2 hidden" @click="toggleMenu('close')"
+                <li class="text-sm absolute flex items-center gap-2" @click="toggleMenu('close')"
                     id="menu_close">
                     <MenuScale width="18" color="#000"></MenuScale>
                     <span>Explore</span>
-                </p>
-            </div>
-          <!-- TODO:fix html semantics -->
+                </li>
+            </section>
 
-            <router-link :to="link.to" v-for="(link, index) in links"><li  class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
+            <li v-for="(link, index) in links" :key="index" class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
                 <component
                         :is="link.icon"   
                         /><span class="text-sm"> {{link.name}}</span>
-            </li></router-link>
+            </li>
         </ul>
     </aside>
     <!-- refactor to be a seperate component 2-->
