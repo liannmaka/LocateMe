@@ -1,5 +1,5 @@
 <script setup>
-import maplibregl from 'maplibre-gl';
+import {Map, Marker} from 'maplibre-gl';
 import {onMounted, reactive, onBeforeUnmount, onBeforeMount} from 'vue';
 import { getUserLocation } from '@/utils/getUserLocation';
 import StoreUtils from '../utils/storeUtils'
@@ -11,74 +11,55 @@ const mapName = 'LocateMe.map';
 const apiKey = import.meta.env.VITE_AWS_API_KEY;
 const region = 'eu-north-1';
 
+// User Location
+const mapValue = reactive({
+  error: null,
+  lngLat: null,
+  zoom: 15,
+  show: false,
+  isAddress: false,
+  interval:null,
+  timeToRender:0,
+  map: {},
+  marker: {}
+});
+
+
 
 const initializeMap = async (lngLat, zoom) => {
-    return new maplibregl.Map({
+    return new Map({
         container: 'map',
         style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
         center: lngLat,
         zoom: zoom,
-        attributionControl: false
+        attributionControl: false,
     })
 
     //removed navigation control
     // mapWrapper.addControl(new maplibregl.NavigationControl(), 'top-left'); 
 }
 
-
 const main = async () => {
     // Create an authentication helper instance using an API key
     const authHelper = await amazonLocationAuthHelper.withAPIKey(apiKey);
 
     // Initialize map and Amazon Location SDK client:
-    const map = await initializeMap(mapValue.lngLat, mapValue.zoom);
+    mapValue.map = await initializeMap(mapValue.lngLat, mapValue.zoom);
 
     // prevents from draging the map around
-    map.dragPan.enable();
-
-    // Add geolocate control to the map.
-    // map.addControl(
-    //     new maplibregl.GeolocateControl({
-    //         positionOptions: {
-    //             enableHighAccuracy: true
-    //         },
-    //         trackUserLocation: true
-    //     })
-    // );
-
-    map.on('load', async () => {
-        map.addSource('center', {
-            'type': 'geojson',
-            'data': {
-                'type': 'Point',
-                'coordinates': mapValue.lngLat
-            }
-        });
-
-    })
-
+    mapValue.map.dragPan.enable();
 
     const client = new amazonLocationClient.LocationClient({
         region,
         ...authHelper.getLocationClientConfig(), // Provides configuration required to make requests to Amazon Location
     });
 
-    let marker = new maplibregl.Marker({ draggable: false }).setLngLat(mapValue.lngLat).addTo(map)
+   mapValue.marker = new Marker({ draggable: false }).setLngLat(mapValue.lngLat).addTo(mapValue.map)
 }
 
-// User Location
-const mapValue = reactive({
-    error: null,
-    lngLat: null,
-    zoom: 15,
-    show: false,
-    isAddress: false,
-    interval:null
-});
 
 function updateUserLocation () {
   let previousCoords = null;
-
   mapValue.interval = setInterval(() => {
     getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
         .then((coords) => {
@@ -86,13 +67,19 @@ function updateUserLocation () {
 
           // Check if the location has changed
           if (!previousCoords || previousCoords[0] !==  currentCoords[0] || previousCoords[1] !==  currentCoords[1]) {
-            console.log('Location changed:',  mapValue.lngLat);
+              console.log('Location changed:',  mapValue.lngLat);
 
-            // Update map value and store
-            mapValue.lngLat = currentCoords;
-            StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-            // Update previousCoords with the new coordinates
-            previousCoords = currentCoords;
+              // Update map value and store
+              mapValue.lngLat = currentCoords;
+              StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+              // Update the marker position
+              mapValue.marker.setLngLat(currentCoords);
+
+              // Optionally, pan or fly to the new location
+              mapValue.map.panTo(currentCoords);
+
+              // Update previousCoords with the new coordinates
+              previousCoords = currentCoords;
 
           }
         })
@@ -103,6 +90,7 @@ function updateUserLocation () {
 
 
 }
+
 onBeforeUnmount(() => {
   // Use clearInterval correctly
   clearInterval(mapValue.interval);
