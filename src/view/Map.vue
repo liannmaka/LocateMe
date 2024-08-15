@@ -61,27 +61,67 @@ const main = async () => {
 
 
 
-onMounted( () => {
-   getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
+// onMounted( () => {
+//    getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
+//       .then((coords) => {
+//           mapValue.lngLat = [coords.longitude, coords.latitude];
+//           StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+//           main()
+//       })
+//       .catch((err) => {
+//         mapValue.error = err.message;
+//       });
+//
+//     watchUserLocation({ enableHighAccuracy: true, timeout: 5000 }).then((coords) => {
+//       mapValue.lngLat = [coords.longitude, coords.latitude];
+//       StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+//       mapValue.marker.setLngLat(mapValue.lngLat)
+//     }).catch((err) => {
+//       mapValue.error = err.message;
+//     });
+//
+// });
+
+onMounted(() => {
+  // First, get the user's initial location
+  getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
       .then((coords) => {
-          mapValue.lngLat = [coords.longitude, coords.latitude];
-          StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-          main()
+        // Set initial coordinates
+        mapValue.lngLat = [coords.longitude, coords.latitude];
+        StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+
+        // Initialize the map and marker with the initial coordinates
+        main(); // Assuming this sets up the map
 
       })
       .catch((err) => {
         mapValue.error = err.message;
       });
 
-    watchUserLocation({ enableHighAccuracy: true, timeout: 5000 }).then((coords) => {
-      mapValue.lngLat = [coords.longitude, coords.latitude];
-      StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-      mapValue.marker.setLngLat(mapValue.lngLat)
-    }).catch((err) => {
-      mapValue.error = err.message;
-    });
+  // Then, continuously watch the user's location for changes
+  const watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        const coords = position.coords;
+        mapValue.lngLat = [coords.longitude, coords.latitude];
+        StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
 
+        // Update the marker's position on the map
+        if (mapValue.marker) {
+          mapValue.marker.setLngLat(mapValue.lngLat);
+        }
+      },
+      (err) => {
+        mapValue.error = err.message;
+      },
+      { enableHighAccuracy: true, timeout: 5000 }
+  );
+
+  // Clear the watcher when the component is unmounted
+  onBeforeUnmount(() => {
+    navigator.geolocation.clearWatch(watchId);
+  });
 });
+
 
 </script>
 
