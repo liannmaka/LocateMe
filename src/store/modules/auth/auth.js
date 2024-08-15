@@ -4,7 +4,7 @@ export const useAuthStore = defineStore('authStore', {
     state: () => ({
         loading: false,
         authStage:'1',
-        user:null
+        user: null
     }),
 
     getters: {
@@ -13,9 +13,5 @@ export const useAuthStore = defineStore('authStore', {
         getCurrentUser:state => state.user
     },
 
-    actions: {
-
-    
-
-    }
+    actions: {}
 })
