@@ -76,7 +76,7 @@ onMounted( () => {
     watchUserLocation({ enableHighAccuracy: true, timeout: 5000 }).then((coords) => {
       mapValue.lngLat = [coords.longitude, coords.latitude];
       StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-      mapValue.marker.setLngLat(mapValue.lngLat).addTo(mapValue.map);
+      mapValue.marker.setLngLat(mapValue.lngLat)
     }).catch((err) => {
       mapValue.error = err.message;
     });
