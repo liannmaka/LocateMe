@@ -1,6 +1,6 @@
 <script setup>
 import maplibregl from 'maplibre-gl';
-import { onMounted, reactive, onBeforeUnmount } from 'vue';
+import {onMounted, reactive, onBeforeUnmount, onBeforeMount} from 'vue';
 import { getUserLocation } from '@/utils/getUserLocation';
 import StoreUtils from '../utils/storeUtils'
 import BaseLayout from '../layout/BaseLayout.vue';
@@ -72,32 +72,28 @@ const mapValue = reactive({
     lngLat: null,
     zoom: 15,
     show: false,
-    isAddress: false
+    isAddress: false,
+    interval:null
 });
 
-function updateMapZoom() { }
-
-onMounted(() => {
+function updateUserLocation () {
   let previousCoords = null;
 
-  const interval = setInterval(() => {
+  mapValue.interval = setInterval(() => {
     getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
         .then((coords) => {
-          const currentCoords = [coords.longitude, coords.latitude];
+          const currentCoords = [coords.longitude, coords.latitude]
 
           // Check if the location has changed
-          if (!previousCoords || previousCoords[0] !== currentCoords[0] || previousCoords[1] !== currentCoords[1]) {
-            console.log('Location changed:', currentCoords);
+          if (!previousCoords || previousCoords[0] !==  currentCoords[0] || previousCoords[1] !==  currentCoords[1]) {
+            console.log('Location changed:',  mapValue.lngLat);
 
             // Update map value and store
             mapValue.lngLat = currentCoords;
             StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-
-            // Call the main function to handle map updates
-            main();
-
             // Update previousCoords with the new coordinates
             previousCoords = currentCoords;
+
           }
         })
         .catch((err) => {
@@ -105,10 +101,32 @@ onMounted(() => {
         });
   }, 2000); // Set interval to 2000ms (2 seconds) for a more reasonable update rate
 
+
+}
+onBeforeUnmount(() => {
   // Use clearInterval correctly
-  onBeforeUnmount(() => {
-    clearInterval(interval);
-  });
+  clearInterval(mapValue.interval);
+  console.log('Interval cleared')
+});
+
+onBeforeMount(() => {
+  // Use clearInterval correctly
+  clearInterval(mapValue.interval);
+  console.log('Interval cleared')
+})
+
+onMounted( () => {
+   getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
+      .then((coords) => {
+          mapValue.lngLat = [coords.longitude, coords.latitude];
+          StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+          main()
+      })
+      .catch((err) => {
+        mapValue.error = err.message;
+      });
+
+   updateUserLocation();
 });
 
 </script>
