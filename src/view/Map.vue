@@ -1,7 +1,7 @@
 <script setup>
 import {Map, Marker} from 'maplibre-gl';
 import {onMounted, reactive, onBeforeUnmount, onBeforeMount} from 'vue';
-import { getUserLocation } from '@/utils/getUserLocation';
+import { getUserLocation, watchUserLocation } from '@/utils/getUserLocation';
 import StoreUtils from '../utils/storeUtils'
 import BaseLayout from '../layout/BaseLayout.vue';
 import Friends from "@/components/friends/Friends.vue";
@@ -58,50 +58,8 @@ const main = async () => {
 }
 
 
-function updateUserLocation () {
-  let previousCoords = null;
-  mapValue.interval = setInterval(() => {
-    getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
-        .then((coords) => {
-          const currentCoords = [coords.longitude, coords.latitude]
-
-          // Check if the location has changed
-          if (!previousCoords || previousCoords[0] !==  currentCoords[0] || previousCoords[1] !==  currentCoords[1]) {
-              console.log('Location changed:',  mapValue.lngLat);
-
-              // Update map value and store
-              mapValue.lngLat = currentCoords;
-              StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
-              // Update the marker position
-              mapValue.marker.setLngLat(currentCoords);
-
-              // Optionally, pan or fly to the new location
-              mapValue.map.panTo(currentCoords);
-
-              // Update previousCoords with the new coordinates
-              previousCoords = currentCoords;
-
-          }
-        })
-        .catch((err) => {
-          mapValue.error = err.message;
-        });
-  }, 2000); // Set interval to 2000ms (2 seconds) for a more reasonable update rate
 
 
-}
-
-onBeforeUnmount(() => {
-  // Use clearInterval correctly
-  clearInterval(mapValue.interval);
-  console.log('Interval cleared')
-});
-
-onBeforeMount(() => {
-  // Use clearInterval correctly
-  clearInterval(mapValue.interval);
-  console.log('Interval cleared')
-})
 
 onMounted( () => {
    getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
@@ -109,12 +67,20 @@ onMounted( () => {
           mapValue.lngLat = [coords.longitude, coords.latitude];
           StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
           main()
+
       })
       .catch((err) => {
         mapValue.error = err.message;
       });
 
-   updateUserLocation();
+    watchUserLocation({ enableHighAccuracy: true, timeout: 5000 }).then((coords) => {
+      mapValue.lngLat = [coords.longitude, coords.latitude];
+      StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+      mapValue.marker.setLngLat(mapValue.lngLat).addTo(mapValue.map);
+    }).catch((err) => {
+      mapValue.error = err.message;
+    });
+
 });
 
 </script>
