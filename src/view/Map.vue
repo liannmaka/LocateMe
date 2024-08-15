@@ -1,6 +1,6 @@
 <script setup>
 import maplibregl from 'maplibre-gl';
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, onBeforeUnmount } from 'vue';
 import { getUserLocation } from '@/utils/getUserLocation';
 import StoreUtils from '../utils/storeUtils'
 import BaseLayout from '../layout/BaseLayout.vue';
@@ -78,18 +78,39 @@ const mapValue = reactive({
 function updateMapZoom() { }
 
 onMounted(() => {
+  let previousCoords = null;
+
+  const interval = setInterval(() => {
     getUserLocation({ enableHighAccuracy: true, timeout: 5000 })
         .then((coords) => {
-            //refactor to know when location changes
-            mapValue.lngLat = [coords.longitude, coords.latitude];
-            StoreUtils.commit('map', 'lngLat', mapValue.lngLat)
-            main()
+          const currentCoords = [coords.longitude, coords.latitude];
 
+          // Check if the location has changed
+          if (!previousCoords || previousCoords[0] !== currentCoords[0] || previousCoords[1] !== currentCoords[1]) {
+            console.log('Location changed:', currentCoords);
+
+            // Update map value and store
+            mapValue.lngLat = currentCoords;
+            StoreUtils.commit('map', 'lngLat', mapValue.lngLat);
+
+            // Call the main function to handle map updates
+            main();
+
+            // Update previousCoords with the new coordinates
+            previousCoords = currentCoords;
+          }
         })
         .catch((err) => {
-            mapValue.error = err.message;
-        })
-})
+          mapValue.error = err.message;
+        });
+  }, 2000); // Set interval to 2000ms (2 seconds) for a more reasonable update rate
+
+  // Use clearInterval correctly
+  onBeforeUnmount(() => {
+    clearInterval(interval);
+  });
+});
+
 </script>
 
 <template>
