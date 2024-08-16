@@ -16,9 +16,9 @@ const friends = [
 </script>
 
 <template>
-  <div class="rounded-md items-start justify-start flex-col transition ease-in-out delay-150 duration-300 absolute z-40 w-full md:w-auto lg:w-auto bottom-20 md:bottom-2 lg:bottom-2 bg-white md:right-2 lg:right-2 flex p-2">
+  <div class="rounded-md items-end justify-center ml-2 mr-2 flex-col transition ease-in-out delay-150 duration-300 absolute z-40 w-auto bottom-20 right-0 md:bottom-2 lg:bottom-2 bg-white md:right-2 lg:right-2 flex p-2">
 
-    <section class="flex items-center justify-start bg-white w-full h-auto gap-1 overflow-scroll">
+    <section class="flex items-center justify-start bg-white w-full gap-1 overflow-scroll hide-scroll-bar">
       <div class="">
         <svg v-if="isSearching" @click="isSearching=false" width="24" height="30" viewBox="0 0 50 50" class="cursor-pointer hover:scale-105 ml-3" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -30,18 +30,18 @@ const friends = [
       <div v-if="!isSearching" class="cursor-pointer p-2 hover:scale-105 shadow-md rounded-full" @click="isSearching=true">
         <Search width="24" color="#000"></Search>
       </div>
-      <img v-for="(i, index) in  friends" :key="index" :src="i.name" :alt="index" class="flex w-16 h-16 rounded-full items-center justify-center gap-1 bg-white cursor-pointer p-2 hover:bg-green-500" />
+      <img v-for="(i, index) in  friends" :key="index" :src="i.name" :alt="index" class="flex w-16 h-16 rounded-full items-center justify-center gap-1 bg-white cursor-pointer p-3 hover:bg-gray-100" />
       <div class="hover:scale-105 shadow-md rounded-full flex items-center justify-start gap-1 bg-white cursor-pointer p-2 w-auto">
         <UserPlus width="24" color="#000"></UserPlus>
       </div>
     </section>
     <section v-if="isSearching" class="w-full p-2 flex flex-col h-auto justify-center">
-      <input class="w-full h-11 outline-black rounded-md border-2 border-gray-950 p-2" placeholder="Search For Friends" />
+      <input class="w-full outline-black ring-1 ring-black text-xs rounded-md border-gray-950 p-2" placeholder="Search For Friends" />
 
       <div>
         <div class="flex items-center flex-col mt-5 justify-center gap-2">
-          <img src="../../assets/nothing.png" width="200" height="200" />
-          <p class="text-sm font-bold">No friends to show.</p>
+          <img src="../../assets/nothing.png" width="120" height="120" />
+          <p class="text-sm font-light">No friends to show.</p>
         </div>
       </div>
     </section>
@@ -49,5 +49,7 @@ const friends = [
 </template>
 
 <style scoped>
-
+.hide-scroll-bar::-webkit-scrollbar{
+  display: none;
+}
 </style>

@@ -1,7 +1,9 @@
 <script setup>
 import { h } from 'vue';
 import { MapPin, Bbq, Shop } from '@iconoir/vue';
+import {router} from "@/router/index.js";
 
+const currentRouteName = router.currentRoute.value.name
 
 const links = [
      {
@@ -11,7 +13,7 @@ const links = [
     },
       {
         to:'/bm-chef',
-        name: 'BM Chef',
+        name: 'BMChef',
         icon: h(Bbq, { color:"#000" })
     },
     {
@@ -24,9 +26,9 @@ const links = [
 
 
 <template>
-   <nav class="md:hidden z-40 fixed bottom-0 bg-white w-full">
+   <nav class="md:hidden z-40 fixed bottom-0  w-full">
 
-     <div class="flex justify-center gap-14 py-4">
+     <div class="flex justify-center gap-14 bg-white p-3 ml-5 mr-5 mb-1 rounded-full shadow-lg  overflow-hidden">
             <router-link
             v-for="(link, index) in links"
             :key="index"
@@ -34,10 +36,12 @@ const links = [
             >
                 <div class="flex justify-center mb-2">
                     <component
-                        :is="link.icon"   
+                        :is="link.icon"
+                        :color="currentRouteName === link.name ? '#c9800a' : '#000'"
+
                         />
                 </div>
-                <div class="text-xs">{{link.name}}</div>
+                <div class="text-xs" :class="currentRouteName === link.name ? 'text-[#c9800a]' : '#000'">{{link.name}}</div>
             </router-link>
         </div>
    </nav> 

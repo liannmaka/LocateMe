@@ -113,10 +113,9 @@ onMounted(() => {
 
 <template>
     <BaseLayout v-slot:screens>
-      <div class="transition-all absolute z-30 m-5 ease-out delay-10 duration-100 bg-white cursor-pointer p-2 rounded-full shadow-sm flex items-center gap-2">
-        <div @click.stop class="">
-          <p class="text-sm font-light">{{mapValue?.deviceSpeed?.toFixed(1)}}/MPH</p>
-        </div>
+      <div v-if="mapValue.deviceSpeed" class="transition-all absolute z-30 m-5 ease-out delay-10 duration-100 bg-white cursor-pointer p-2 rounded-full shadow-sm flex items-center gap-2">
+        <p class="text-sm font-light">{{mapValue?.deviceSpeed?.toFixed(1)}}/MPH</p>
+
       </div>
         <Friends></Friends>
         <div id='map' class="w-full h-screen overflow-hidden"></div>

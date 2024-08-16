@@ -10,7 +10,6 @@ import {router} from "@/router/index.js";
 import { initFlowbite } from 'flowbite'
 
 
-const currentRouteName = router.currentRoute.value.name
 const user = StoreUtils.get('auth', 'getCurrentUser')
 const showLoginModal = ref(false)
 
@@ -34,8 +33,8 @@ onMounted(() => {
     <div class="relative flex">
         <!--positon - absolute-->
         <!--this sidebar displays only on desktop ang larger screens-->
-        <NavBar v-if="user"/>
-        <SideBar v-if="user"></SideBar>
+        <NavBar />
+        <SideBar />
         <div class="absolute p-2 rounded right-0 lg:right-10 z-20 top-3 flex items-start gap-2">
             <div class="flex flex-col items-end justify-center gap-2">
               <div @click="handleShowUserModal"
