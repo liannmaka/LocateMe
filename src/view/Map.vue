@@ -4,7 +4,6 @@ import {onMounted, reactive, onBeforeUnmount, onBeforeMount} from 'vue';
 import { getUserLocation, watchUserLocation } from '@/utils/getUserLocation';
 import StoreUtils from '../utils/storeUtils'
 import BaseLayout from '../layout/BaseLayout.vue';
-import Friends from "@/components/friends/Friends.vue";
 import {MapPin} from "@iconoir/vue";
 
 // Map Resource Details
@@ -117,7 +116,6 @@ onMounted(() => {
         <p class="text-sm font-light">{{mapValue?.deviceSpeed?.toFixed(1)}}/MPH</p>
 
       </div>
-        <Friends></Friends>
         <div id='map' class="w-full h-screen overflow-hidden"></div>
     </BaseLayout>
 </template>
