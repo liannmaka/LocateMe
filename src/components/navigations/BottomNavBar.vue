@@ -26,9 +26,9 @@ const links = [
 
 
 <template>
-   <nav class="md:hidden z-40 fixed bottom-0  w-full">
+   <nav class="md:hidden z-40 fixed bottom-0 shadow-lg w-full">
 
-     <div class="flex justify-center gap-14 bg-white p-3 ml-5 mr-5 mb-3 rounded-full shadow-lg  overflow-hidden">
+     <div class="flex justify-center gap-14 bg-white p-3 shadow-sm overflow-hidden">
             <router-link
             v-for="(link, index) in links"
             :key="index"
