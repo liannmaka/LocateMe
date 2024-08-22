@@ -13,5 +13,7 @@ export const useAuthStore = defineStore('authStore', {
         getCurrentUser:state => state.user
     },
 
-    actions: {} 
+    actions: {
+        
+    } 
 })
