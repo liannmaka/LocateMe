@@ -14,8 +14,6 @@ export const useAuthStore = defineStore('authStore', {
     },
 
     actions: {
-
-    
-
-    }
+        
+    } 
 })
