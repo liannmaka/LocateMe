@@ -1,7 +1,7 @@
 <script setup>
-import {Map, Marker} from 'maplibre-gl';
+import {Map, Marker, Popup} from 'maplibre-gl';
 import {onMounted, reactive, onBeforeUnmount, onBeforeMount} from 'vue';
-import { getUserLocation, watchUserLocation } from '@/utils/getUserLocation';
+import { getUserLocation } from '@/utils/getUserLocation';
 import StoreUtils from '../utils/storeUtils'
 import BaseLayout from '../layout/BaseLayout.vue';
 import {MapPin} from "@iconoir/vue";
@@ -25,6 +25,54 @@ const mapValue = reactive({
   deviceSpeed:null
 });
 
+const friends = [
+  {
+    img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnrJY-fDaAmzAxdLGa3LHEyP4YkOkTOCiHcw&s',
+    name:'CodeX Kelvin',
+    last_seen:'3hrs ago',
+    location:[6.9244,3.5792]
+  },
+  {
+    img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnrJY-fDaAmzAxdLGa3LHEyP4YkOkTOCiHcw&s',
+    name:'CodeX Kelvin',
+    last_seen:'3hrs ago',
+    location:[3.5218155,6.4408676]
+
+  },
+  {img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kPUVBXaug6iM3wIFuPZmijI-G5ayVcl5Ag&s',
+    name:'Pascal Chidi',
+    last_seen:'1hr ago',
+    location:[3.5108155,6.4408676]},
+  {img:'https://e7.pngegg.com/pngimages/273/154/png-clipart-cats-cats-thumbnail.png',
+    name:'Chisomaga Onwukaife',
+    last_seen:'2hrs ago',
+    location:[3.6208155,6.4408676]},
+  {img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kPUVBXaug6iM3wIFuPZmijI-G5ayVcl5Ag&s',
+    name:'Clark Kent',
+    last_seen:'active',
+    location:[3.3208155,6.4408676]},
+  {img:'https://e7.pngegg.com/pngimages/273/154/png-clipart-cats-cats-thumbnail.png',
+    name:'Chizzy Jnr',
+    last_seen:'30hrs ago',
+    location:[3.4208155,6.4408676]},
+] //sample payload from backend
+
+const friendsGeoJSON = {
+  type: "FeatureCollection",
+  features: friends.map(friend => ({
+    type: "Feature",
+    geometry: {
+      type: "Point",
+      coordinates: friend.location // Assuming [longitude, latitude]
+    },
+    properties: {
+      img: friend.img,
+      name: friend.name,
+      last_seen: friend.last_seen
+    }
+  }))
+};
+
 
 
 const initializeMap = async (lngLat, zoom) => {
@@ -41,21 +89,80 @@ const initializeMap = async (lngLat, zoom) => {
 }
 
 const main = async () => {
-    // Create an authentication helper instance using an API key
-    const authHelper = await amazonLocationAuthHelper.withAPIKey(apiKey);
+
 
     // Initialize map and Amazon Location SDK client:
     mapValue.map = await initializeMap(mapValue.lngLat, mapValue.zoom);
 
+    mapValue.map.on('load', async () => {
+    // Add an image to use as a custom marker
+    const image = await mapValue.map.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png');
+    mapValue.map.addImage('custom-marker', image.data);
+    // Add a GeoJSON source with 3 points.
+
+    mapValue.marker = new Marker({ draggable: false }).setLngLat(mapValue.lngLat).addTo(mapValue.map)
+
+    mapValue.map.addSource('friends', {
+        type: 'geojson',
+        data: friendsGeoJSON
+      });
+
+    friends.forEach(friend => {
+        // Create a DOM element for the marker
+        const el = document.createElement('div');
+        el.className = 'marker';
+        el.style.backgroundImage = `url(${friend.img})`;
+        el.style.width = '50px';
+        el.style.height = '50px';
+        el.style.backgroundSize = 'cover';
+        el.style.borderRadius = '50%';
+
+        // Add a marker to the map
+        new  Marker({
+          element: el, // Use the custom element
+          anchor: 'bottom' // Position the marker to align correctly (optional)
+        })
+            .setLngLat(friend.location)
+            .setPopup(new Popup({ offset: 25 }) // add popups
+                .setHTML(`<strong>${friend.name}</strong><br>Last seen: ${friend.last_seen}`))
+            .addTo(mapValue.map);
+
+
+      });
+
+    // Add a symbol layer
+    // mapValue.map.addLayer({
+    //   id: 'friends-layer',
+    //   type: 'circle', // Or 'symbol' if you want to use icons
+    //   source: 'friends',
+    //   paint: {
+    //     'circle-radius': 6,
+    //     'circle-color': 'rgba(0,0,0,0.28)'
+    //   }
+    // });
+
+    // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
+    mapValue.map.on('click', 'symbols', (e) => {
+      mapValue.map.flyTo({
+        center: e.features[0].geometry.coordinates
+      });
+    });
+
+    // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+    mapValue.map.on('mouseenter', 'symbols', () => {
+      mapValue.map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    mapValue.map.on('mouseleave', 'symbols', () => {
+      mapValue.map.getCanvas().style.cursor = '';
+    });
+  });
+
     // prevents from draging the map around
     mapValue.map.dragPan.enable();
 
-    const client = new amazonLocationClient.LocationClient({
-        region,
-        ...authHelper.getLocationClientConfig(), // Provides configuration required to make requests to Amazon Location
-    });
 
-   mapValue.marker = new Marker({ draggable: false }).setLngLat(mapValue.lngLat).addTo(mapValue.map)
 }
 
 
@@ -125,4 +232,5 @@ onMounted(() => {
     width: 100%;
     height: 100vh;
 }
+
 </style>
