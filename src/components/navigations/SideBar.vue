@@ -86,14 +86,14 @@ onMounted(() => {
                     <Menu width="18" color="#000"></Menu>
                 </li>
 
-                <li class="text-sm absolute flex items-center gap-2" @click="toggleMenu('close')"
+                <li class="text-sm absolute flex items-center gap-2 hidden" @click="toggleMenu('close')"
                     id="menu_close">
                     <MenuScale width="18" color="#000"></MenuScale>
                     <span>Explore</span>
                 </li>
             </section>
 
-            <li v-for="(link, index) in links" :key="index" class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
+            <li v-for="(link, index) in links" class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500">
                 <component
                         :is="link.icon"   
                         /><span class="text-sm"> {{link.name}}</span>
