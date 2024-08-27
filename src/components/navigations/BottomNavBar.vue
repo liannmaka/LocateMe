@@ -38,7 +38,6 @@ const links = [
                     <component
                         :is="link.icon"
                         :color="currentRouteName === link.name ? '#c9800a' : '#000'"
-
                         />
                 </div>
                 <div class="text-xs" :class="currentRouteName === link.name ? 'text-[#c9800a]' : '#000'">{{link.name}}</div>
