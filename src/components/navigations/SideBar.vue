@@ -119,6 +119,7 @@
       <li
         v-for="(link, index) in links"
         class="text-sm flex items-center gap-2 p-2 hover:p-2 hover:scale-110 hover:bg-green-500"
+        :key="index"
       >
         <component :is="link.icon" /><span class="text-sm">
           {{ link.name }}</span

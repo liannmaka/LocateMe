@@ -45,6 +45,7 @@
       <img
         src="https://rideralogistics.com/img/logo3.png"
         width="200"
+        alt="logistics-image"
       />
     </div>
 
