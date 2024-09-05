@@ -1,17 +1,15 @@
-import { createApp } from 'vue';
-import { createPinia } from 'pinia';
-import 'maplibre-gl/dist/maplibre-gl.css';
-import App from '@/App.vue';
-import './style.css'
-import { router } from './router';
-import 'animate.css';
-import 'flowbite';
-
+import App from "@/App.vue";
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import { router } from "./router";
+import "maplibre-gl/dist/maplibre-gl.css";
+import "./style.css";
+import "animate.css";
+import "flowbite";
 
 const app = createApp(App);
 const pinia = createPinia();
 
-app.use(router)
+app.use(router);
 app.use(pinia);
-app.mount('#app');
-
+app.mount("#app");
