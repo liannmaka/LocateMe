@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "deploy-dev": "s3-deploy './dist/**' --cwd './dist/' --region eu-north-1 --bucket locate-me",
     "release-dev": "npm run build && npm run deploy-dev",
-    "release-buggie": "git add . && git commit -m 'project files updated' && git push"
+    "release-buggie": "git add . && git commit -m 'project files updated' && git push",
+    "format": "prettier --write '**/*.{json,js,md,vue,css,}' --config ./.prettierrc"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.22",
