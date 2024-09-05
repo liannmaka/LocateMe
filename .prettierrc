@@ -1,0 +1,8 @@
+{
+  "printWidth": 60,
+  "arrowParens": "avoid",
+  "trailingComma": "none",
+  "proseWrap": "always",
+  "vueIndentScriptAndStyle": true,
+  "singleAttributePerLine": true
+}
