@@ -1,25 +1,38 @@
 <script setup>
+  import { UserCircle } from "@iconoir/vue";
+  import { ref, onMounted } from "vue";
+  import { router } from "@/router/index.js";
+  import { initFlowbite } from "flowbite";
   import SideBar from "../components/navigations/SideBar.vue";
   import LoginModal from "../components/modals/auth/LoginModal.vue";
   import LocationBar from "../components/location/LocationBar.vue";
-  import { UserCircle } from "@iconoir/vue";
   import StoreUtils from "../utils/storeUtils";
-  import { ref, onMounted } from "vue";
   import NavBar from "../components/navigations/BottomNavBar.vue";
-  import { router } from "@/router/index.js";
-  import { initFlowbite } from "flowbite";
   import Friends from "@/components/friends/Friends.vue";
   import RoutingAppSample from "@/components/location/RoutingAppSample.vue";
+  import FriendRequestModal from "../components/modals/auth/FriendRequestModal.vue";
 
   const user = StoreUtils.get("auth", "getCurrentUser");
-  const showLoginModal = ref(false);
+  const isModalOpen = ref(false);
+  const activeView = ref(null);
 
-  const handleClose = value => {
-    showLoginModal.value = value;
+  const OpenModal = () => {
+    isModalOpen.value = true;
   };
 
-  const handleShowUserModal = () => {
-    if (!user) showLoginModal.value = true;
+  const closeModal = () => {
+    isModalOpen.value = false;
+    activeView.value = null;
+  };
+
+  const openShowUserModal = () => {
+    if (!user) OpenModal();
+    activeView.value = "show-user-modal";
+  };
+
+  const openFriendRequestModal = () => {
+    OpenModal();
+    activeView.value = "friend-request-modal";
   };
 
   onMounted(() => {
@@ -29,15 +42,21 @@
 
 <template>
   <LoginModal
-    v-if="showLoginModal"
-    @close="handleClose"
+    v-if="isModalOpen && activeView === 'show-user-modal'"
+    @close="closeModal"
   ></LoginModal>
+  <FriendRequestModal
+    v-if="
+      isModalOpen && activeView === 'friend-request-modal'
+    "
+    @close="closeModal"
+  />
   <div class="relative flex">
     <!--positon - absolute-->
     <!--this sidebar displays only on desktop ang larger screens-->
     <NavBar />
     <SideBar />
-    <Friends />
+    <Friends @open-modal="openFriendRequestModal" />
     <RoutingAppSample />
 
     <div
@@ -47,7 +66,7 @@
         class="flex flex-col items-end justify-center gap-2"
       >
         <div
-          @click="handleShowUserModal"
+          @click="openShowUserModal"
           class="shadow-sm flex rounded-full items-center gap-1 bg-white cursor-pointer p-2 hover:bg-green-500"
         >
           <UserCircle
