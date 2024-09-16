@@ -104,8 +104,12 @@ const main = async () => {
 
     mapValue.map.addSource('friends', {
         type: 'geojson',
-        data: friendsGeoJSON
+        data: friendsGeoJSON // friendsGeoJSON data
       });
+
+    // mapValue.map.on('click', (e) => {
+    //
+    // })
 
     friends.forEach(friend => {
         // Create a DOM element for the marker
@@ -121,42 +125,13 @@ const main = async () => {
         new  Marker({
           element: el, // Use the custom element
           anchor: 'bottom' // Position the marker to align correctly (optional)
-        })
-            .setLngLat(friend.location)
+        }).setLngLat(friend.location)
             .setPopup(new Popup({ offset: 25 }) // add popups
-                .setHTML(`<strong>${friend.name}</strong><br>Last seen: ${friend.last_seen}`))
+            .setHTML(`<strong>${friend.name}</strong><br>Last seen: ${friend.last_seen}`))
             .addTo(mapValue.map);
 
 
       });
-
-    // Add a symbol layer
-    // mapValue.map.addLayer({
-    //   id: 'friends-layer',
-    //   type: 'circle', // Or 'symbol' if you want to use icons
-    //   source: 'friends',
-    //   paint: {
-    //     'circle-radius': 6,
-    //     'circle-color': 'rgba(0,0,0,0.28)'
-    //   }
-    // });
-
-    // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
-    mapValue.map.on('click', 'symbols', (e) => {
-      mapValue.map.flyTo({
-        center: e.features[0].geometry.coordinates
-      });
-    });
-
-    // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
-    mapValue.map.on('mouseenter', 'symbols', () => {
-      mapValue.map.getCanvas().style.cursor = 'pointer';
-    });
-
-    // Change it back to a pointer when it leaves.
-    mapValue.map.on('mouseleave', 'symbols', () => {
-      mapValue.map.getCanvas().style.cursor = '';
-    });
   });
 
     // prevents from draging the map around
