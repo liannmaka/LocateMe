@@ -63,7 +63,6 @@
 
 <style scoped>
   .input-wrapper .input-label {
-    text-transform: uppercase;
     color: rgb(84, 82, 82);
     font-size: 0.8rem;
   }

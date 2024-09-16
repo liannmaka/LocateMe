@@ -1,9 +1,11 @@
 <script setup>
   import { Search, UserPlus, Group } from "@iconoir/vue";
-  import { ref } from "vue";
+  import { ref, defineEmits } from "vue";
 
   const showFriendModal = ref(false);
   const currentFriend = ref(null);
+
+  defineEmits(["open-modal"]);
 
   function trackFriend(obj) {
     const friend = document.getElementById("friend");
@@ -234,6 +236,7 @@
         <UserPlus
           width="24"
           color="#000"
+          @click="$emit('open-modal')"
         ></UserPlus>
       </div>
       <img
