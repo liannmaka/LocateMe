@@ -1,10 +1,5 @@
 <script setup>
-  import {
-    Search,
-    UserPlus,
-    Group,
-    DeliveryTruck
-  } from "@iconoir/vue";
+  import { DeliveryTruck } from "@iconoir/vue";
   import { ref } from "vue";
 
   const showCaseLogo = ref(true);
