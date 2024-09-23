@@ -1,5 +1,5 @@
 <script setup>
-  import { Search, UserPlus, Group } from "@iconoir/vue";
+  import { UserPlus, Group } from "@iconoir/vue";
   import { ref, defineEmits } from "vue";
 
   const showFriendModal = ref(false);

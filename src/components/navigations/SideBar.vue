@@ -1,12 +1,10 @@
 <script setup>
-  import { onMounted } from "vue";
-  import { h } from "vue";
+  import { onMounted, h } from "vue";
   import {
     Shop,
     PeopleTag,
     HouseRooms,
     Bbq,
-    Delivery,
     Menu,
     MenuScale,
     MapPin
