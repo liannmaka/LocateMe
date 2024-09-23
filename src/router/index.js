@@ -28,15 +28,16 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
 
   // If auth isn't required for the route, just continue.
   if (!authRequired) return next();
+
   // console.log("userManagement getter info: "+StoreUtils.rootGetters(StoreUtils.getters.auth.getUserInfo))
-  if (sessionStorage?.token != null) {
+  if (sessionStorage?.token !== null) {
     return next();
   }
-  redirectToLogin();
-  // eslint-disable-next-line no-unused-vars
+
   function redirectToLogin() {
     // next({ name: RouteConstantUtil.auth.login, query: { redirectFrom: routeTo.fullPath } });
   }
+  redirectToLogin();
 });
 
 router.beforeResolve(async (routeTo, routeFrom, next) => {

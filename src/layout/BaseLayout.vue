@@ -1,7 +1,6 @@
 <script setup>
   import { UserCircle } from "@iconoir/vue";
   import { ref, onMounted } from "vue";
-  import { router } from "@/router/index.js";
   import { initFlowbite } from "flowbite";
   import SideBar from "../components/navigations/SideBar.vue";
   import LoginModal from "../components/modals/auth/LoginModal.vue";

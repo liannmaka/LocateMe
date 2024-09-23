@@ -1,5 +1,4 @@
 <script setup>
-  const isPresent = types => type => types.includes(type);
   defineProps({
     btnText: String,
     btnType: String,
