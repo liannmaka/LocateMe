@@ -19,6 +19,10 @@
     modelValue: {
       type: [String, Number],
       default: ""
+    },
+    placeholder: {
+      type: String,
+      default: "Enter a phone number"
     }
   });
 
@@ -35,13 +39,15 @@
 </script>
 
 <template>
-  <div class="input-wrapper">
-    <label class="input-label">
+  <div>
+    <label
+      class="text-[var(--bice-blue)] text-[13px] font-normal"
+    >
       {{ label }}
       <span v-if="required">*</span>
     </label>
     <vue-tel-input
-      class="mt-2"
+      class="mt-[3px]"
       v-model="phone"
       :onlyCountries="['ng', 'ie', 'tr', 'ca']"
       :defaultCountry="234"
@@ -53,7 +59,7 @@
         showDialCodeInList: true
       }"
       :inputOptions="{
-        placeholder: 'Enter a phone number',
+        placeholder: placeholder,
         showDialCode: true,
         maxlength: 17
       }"
@@ -62,12 +68,13 @@
 </template>
 
 <style scoped>
-  .input-wrapper .input-label {
-    color: rgb(84, 82, 82);
-    font-size: 0.8rem;
-  }
-
   .vue-tel-input:focus-within {
     box-shadow: none;
+  }
+
+  .vue-tel-input {
+    border-radius: 5px;
+    border: 1.5px solid #ccc;
+    padding: 0.5px 0;
   }
 </style>
