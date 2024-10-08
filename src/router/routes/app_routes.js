@@ -16,5 +16,17 @@ export const appRoutes = [
     path: "/bm-chef",
     component: () => import("../../view/BMChefs.vue"),
     meta: { authRequired: false, layout: "app" }
+  },
+  {
+    name: "SignUp",
+    path: "/sign-up",
+    component: () => import("../../view/SignUp.vue"),
+    meta: { authRequired: false, layout: "app" }
+  },
+  {
+    name: "Login",
+    path: "/login",
+    component: () => import("../../view/Login.vue"),
+    meta: { authRequired: false, layout: "app" }
   }
 ];

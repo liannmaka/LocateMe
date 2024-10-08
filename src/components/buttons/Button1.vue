@@ -8,7 +8,12 @@
       type: String,
       default: "default",
       validator(value) {
-        const VARIANTS = ["default", "send", "cancel"];
+        const VARIANTS = [
+          "default",
+          "send",
+          "cancel",
+          "create"
+        ];
         const isPresent = types => type =>
           types.includes(type);
         const isValid = isPresent(VARIANTS)(value);
@@ -45,7 +50,9 @@
           ? 'send'
           : variant === 'cancel'
             ? 'cancel'
-            : '',
+            : variant === 'create'
+              ? 'create'
+              : '',
       size === 'xs'
         ? 'xtra-small'
         : size === 'sm'
@@ -85,6 +92,11 @@
     border: 1px solid #666666;
   }
 
+  .create {
+    background-color: var(--penn-blue);
+    color: #fafafa;
+  }
+
   /* size */
   .xtra-small {
     font-size: 0.75rem;
@@ -95,7 +107,7 @@
   .small {
     font-size: 0.85rem;
     font-weight: 400;
-    padding: 0.5rem;
+    padding: 0.6rem;
   }
 
   .large {
