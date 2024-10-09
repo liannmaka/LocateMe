@@ -119,25 +119,23 @@
         .setLngLat(mapValue.lngLat)
         .addTo(mapValue.map);
 
-<<<<<<< HEAD
-    mapValue.map.addSource('friends', {
-        type: 'geojson',
-        data: friendsGeoJSON // friendsGeoJSON data
-      });
+    // mapValue.map.addSource('friends', {
+    //     type: 'geojson',
+    //     data: friendsGeoJSON // friendsGeoJSON data
+    //   });
 
     // mapValue.map.on('click', (e) => {
     //
     // })
 
-    friends.forEach(friend => {
-=======
-      mapValue.map.addSource("friends", {
-        type: "geojson",
-        data: friendsGeoJSON
-      });
+//     friends.forEach(friend => {
+// =======
+//       mapValue.map.addSource("friends", {
+//         type: "geojson",
+//         data: friendsGeoJSON
+//       });
 
       friends.forEach(friend => {
->>>>>>> 37e48801750bde4cd6c89fbf20ef645e90c6b162
         // Create a DOM element for the marker
         const el = document.createElement("div");
         el.className = "marker";
@@ -150,7 +148,6 @@
         // Add a marker to the map
         new Marker({
           element: el, // Use the custom element
-<<<<<<< HEAD
           anchor: 'bottom' // Position the marker to align correctly (optional)
         }).setLngLat(friend.location)
             .setPopup(new Popup({ offset: 25 }) // add popups
@@ -159,21 +156,8 @@
 
 
       });
-  });
-=======
-          anchor: "bottom" // Position the marker to align correctly (optional)
-        })
-          .setLngLat(friend.location)
-          .setPopup(
-            new Popup({
-              offset: 25
-            }) // add popups
-              .setHTML(
-                `<strong>${friend.name}</strong><br>Last seen: ${friend.last_seen}`
-              )
-          )
-          .addTo(mapValue.map);
-      });
+
+
 
       // Add a symbol layer
       // mapValue.map.addLayer({
@@ -203,7 +187,6 @@
         mapValue.map.getCanvas().style.cursor = "";
       });
     });
->>>>>>> 37e48801750bde4cd6c89fbf20ef645e90c6b162
 
     // prevents from draging the map around
     mapValue.map.dragPan.enable();
