@@ -3,7 +3,7 @@
   import { ref, onMounted } from "vue";
   import { initFlowbite } from "flowbite";
   import SideBar from "../components/navigations/SideBar.vue";
-  import LoginModal from "../components/modals/auth/LoginModal.vue";
+  import UserProfile from "../components/modals/auth/UserProfile.vue";
   import LocationBar from "../components/location/LocationBar.vue";
   import StoreUtils from "../utils/storeUtils";
   import NavBar from "../components/navigations/BottomNavBar.vue";
@@ -40,10 +40,10 @@
 </script>
 
 <template>
-  <LoginModal
+  <UserProfile
     v-if="isModalOpen && activeView === 'show-user-modal'"
     @close="closeModal"
-  ></LoginModal>
+  ></UserProfile>
   <FriendRequestModal
     v-if="
       isModalOpen && activeView === 'friend-request-modal'
@@ -73,7 +73,7 @@
             color="#000"
           ></UserCircle>
           <p class="text-sm">
-            {{ user ? user : "Login/Signup" }}
+            {{ user ? user : "User Profile" }}
           </p>
         </div>
         <LocationBar></LocationBar>

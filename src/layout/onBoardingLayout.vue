@@ -14,7 +14,7 @@
       class="hidden lg:flex-1 lg:flex lg:justify-center lg:items-center bg-[var(--oxford-blue)] lg:h-full"
     >
       <img
-        src=".././assets/moon.svg"
+        src=".././assets/map_icons/moon.svg"
         alt="moon-svg"
         class="max-w-full max-h-full object-contain"
       />
