@@ -3,13 +3,11 @@
   import {
     onMounted,
     reactive,
-    onBeforeUnmount,
-    onBeforeMount
+    onBeforeUnmount
   } from "vue";
   import { getUserLocation } from "@/utils/getUserLocation";
   import StoreUtils from "../utils/storeUtils";
   import BaseLayout from "../layout/BaseLayout.vue";
-  import { MapPin } from "@iconoir/vue";
 
   // Map Resource Details
   const mapName = "LocateMe.map";
