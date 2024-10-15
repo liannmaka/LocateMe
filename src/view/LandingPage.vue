@@ -133,11 +133,12 @@ onMounted(() => {
 <!--    </p>-->
 <!--  </div>-->
 
-  <div class="relative wrapper overflow-hidden">
-    <Header></Header>
+  <div class="relative w-full overflow-hidden">
 
-    <div class="wrapper_inner  h-screen z-10  p-5 py-5 flex justify-center px-5 w-full relative">
-    <ArrowDownCircle @click="scrollToSection"  width="32" color="#fff" class="absolute z-20 bottom-10 hover:scale-125 cursor-pointer"></ArrowDownCircle>
+    <section class="flex-col h-screen z-10  py-5 flex items-center  w-full relative">
+      <Header></Header>
+
+      <ArrowDownCircle @click="scrollToSection"  width="32" color="#fff" class="absolute z-20 bottom-8 hover:scale-125 cursor-pointer"></ArrowDownCircle>
 
       <video src="../assets/vb-1.mp4" class="absolute top-0 left-0 w-full h-full object-cover"
              autoplay
@@ -145,9 +146,11 @@ onMounted(() => {
              loop
              playsinline>
       </video>
+      <div class="absolute h-screen w-full top-0 overflow"></div>
 
-      <div
-          class="{x}-carousel h-auto bg-white flex flex-col md:flex-row lg:flex-row container">
+      <div class="h-full flex items-center justify-center">
+        <div
+          class="{x}-carousel  bg-white flex items-center flex-col md:flex-row lg:flex-row container">
         <div
             class="{x}-carousel-item h-auto md:h-full lg:h-full flex flex-col md:flex-row lg:flex-row w-full gap-4 relative items-center hidden">
           <section class="flex items-center h-auto md:w-2/4 lg:w-2/4">
@@ -178,34 +181,10 @@ onMounted(() => {
         <div class="md:h-full lg:h-full flex md:flex-col lg:flex-col items-center justify-center gap-2 p-4"
              id='controls'></div>
       </div>
-    </div>
-<!--    <div class="wrapper_inner  h-screen z-10  p-5 py-5 flex justify-center px-5 w-full relative">-->
-<!--      <video src="../assets/vb-3.mp4" class="absolute top-0 left-0 w-full h-full object-cover"-->
-<!--             autoplay-->
-<!--             muted-->
-<!--             loop-->
-<!--             playsinline>-->
-<!--      </video>-->
-<!--      <div class="absolute h-screen w-full top-0 overflow"></div>-->
-<!--      <div  class="h-auto bg-white flex flex-col md:flex-row lg:flex-row container">-->
-<!--        <div-->
-<!--            class="h-auto md:h-full lg:h-full flex flex-col md:flex-row lg:flex-row w-full gap-4 relative items-center">-->
-<!--          <div class="flex h-full items-center h-auto md:w-2/4 lg:w-2/4">-->
-<!--            <section class="flex h-auto items-center flex-col justify-center w-full animate__animated animate__fadeIn">-->
-<!--              <h2 class="text-5xl w-full text-center font-bold text-white">What Does It Takes To Build. Test. Repeat?</h2>-->
-<!--              <p class="w-full md:w-3/4 lg:w-2/4 md:text-left lg:text-left text-center text-white py-5 md:py-3 lg:py-3 p-1">it's-->
-<!--                what we do...</p>-->
-<!--            </section>-->
-<!--          </div>-->
+      </div>
+    </section>
 
-<!--        </div>-->
-
-
-<!--      </div>-->
-
-<!--    </div>-->
-
-    <section id="page2" ref="section" class="wrapper_inner h-screen z-10 p-5 py-5 flex items-center justify-center px-5 w-full relative">
+    <section id="page2" ref="section" class="h-screen z-10 py-5 flex items-center justify-center w-full relative">
       <video src="../assets/vb-2.mp4" class="absolute top-0 left-0 w-full h-full object-cover"
              autoplay
              muted
@@ -232,106 +211,9 @@ onMounted(() => {
       </div>
 
     </section>
-<!--    <section class="wrapper_inner  h-screen z-10  p-5 py-5 flex justify-center px-5 w-full relative">-->
-<!--      <video src="../assets/vb-4.mp4" class="absolute top-0 left-0 w-full h-full object-cover"-->
-<!--             autoplay-->
-<!--             muted-->
-<!--             loop-->
-<!--             playsinline>-->
-<!--      </video>-->
-<!--      <div class="absolute h-screen w-full top-0 overflow-2"></div>-->
-<!--      <div  class="h-auto bg-white flex flex-col md:flex-row lg:flex-row container">-->
-<!--        <div-->
-<!--            class="h-auto md:h-full lg:h-full flex flex-col md:flex-row lg:flex-row w-full gap-4 relative items-center">-->
-<!--          <div class="flex h-full items-center h-auto md:w-2/4 lg:w-2/4">-->
-<!--            <section class="flex h-auto items-center flex-col justify-center w-full animate__animated animate__fadeIn">-->
-<!--              <h2 class="text-5xl w-full text-left font-bold text-white">What Does It Takes To Build. Test. Repeat?</h2>-->
-<!--              <p class="w-full lg:text-left text-center text-white py-5 md:py-3 lg:py-3 p-1">it's-->
-<!--                what we do...</p>-->
-<!--            </section>-->
-<!--          </div>-->
-
-<!--        </div>-->
-
-
-<!--      </div>-->
-
-<!--    </section>-->
-
-
-    <!--    <div class="h-auto container">-->
-<!--      <div class="h-auto flex flex-col md:flex-row lg:flex-row w-full gap-4 relative items-center">-->
-<!--        <div class="flex h-auto items-center w-full md:w-2/4">-->
-<!--          <section class="flex h-auto items-center flex-col justify-center w-full">-->
-<!--            <div class="logo w-full py-4 justify-center lg:justify-start">What does it take to;</div>-->
-<!--            <h2 class="text-5xl w-full lg:text-left text-center font-bold text-gray-700 py-4">Build? Test? Repeat?</h2>-->
-<!--            <p class="w-full lg:text-left text-center p-1">We are focused on contributing to Africa's Technological-->
-<!--              Advancement. With technology, we would help grow business and connect people.</p>-->
-<!--          </section>-->
-<!--        </div>-->
-<!--        <section class="flex items-center justify-center h-auto w-full md:w-2/4">-->
-<!--          <img src="../assets/image3.png" class="rounded-lg" />-->
-<!--        </section>-->
-<!--      </div>-->
-<!--    </div>-->
 
     <footer class="py-5 z-40 w-full bg-black">
       <section class="w-full">
-<!--        <div class="flex flex-col items-center lg:hidden">-->
-<!--          <img src="../assets/xx1/x.svg" width="80" alt="logo-footer"/>-->
-
-<!--        </div>-->
-<!--        <div class="w-auto flex flex-wrap flex-col bg-white items-center justify-center gap-4 lg:justify-around">-->
-<!--          <div class="flex-col items-start lg:flex">-->
-<!--            <img src="../assets/xx1/x.svg" width="60" alt="logo-footer" />-->
-<!--          </div>-->
-<!--        </div>-->
-<!--          <div class="flex items-center gap-5 text-gray-800">-->
-<!--            <p class="text-lg font-bold leading-relaxed">Careers</p>-->
-<!--            <p class="text-lg font-bold leading-relaxed">Careers</p>-->
-<!--            <p class="text-lg font-bold leading-relaxed">Careers</p>-->
-<!--            <p class="text-lg font-bold leading-relaxed">Careers</p>-->
-<!--          </div>-->
-<!--&lt;!&ndash;          <div class="flex flex-col items-start space-y-4">&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="text-lg font-bold leading-tight mb-2">Link of Interest</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Careers</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Careers</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Careers</p>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div class="flex flex-col items-start space-y-4">&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="text-lg font-bold leading-tight mb-2">Follow us</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Instagram</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Tiktok</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">x</p>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div class="flex flex-col items-start space-y-4 text-gray-800">&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="text-lg font-bold leading-tight mb-2">Finances</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Careers</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Careers</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Careers</p>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div class="flex flex-col items-start space-y-4">&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="text-lg font-bold leading-tight">Security</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="leading-relaxed">Reasonable disclosure</p>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div class="flex flex-col items-center lg:items-start space-y-4">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <p class="text-lg font-bold leading-tight mb-2">Download the app on;</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <p class="leading-relaxed">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <img src="../assets/xx1/apple.svg" width="120" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    </p>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <p class="leading-relaxed">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <img src="../assets/xx1/android.svg" width="120" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    </p>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--        </div>-->
-<!--        <div class="flex items-end space-x-4 mt-4 overflow-hidden">-->
-<!--          <img src="../assets/xx1/undraw_city_life_gnpr.svg" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />-->
-<!--          <img src="../assets/xx1/undraw_city_life_gnpr.svg" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />-->
-<!--          <img src="../assets/xx1/undraw_city_life_gnpr.svg" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />-->
-<!--          <img src="../assets/xx1/undraw_city_life_gnpr.svg" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />-->
-<!--          <img src="../assets/xx1/undraw_city_life_gnpr.svg" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />-->
-<!--        </div>-->
         <div class="text-center w-full flex justify-center items-center text-white">
           <p class="text-white font-bold underline text-wrap w-5/12">@2024 | Enno{x}vating | App
             version - v1.0.1</p>
@@ -360,136 +242,7 @@ onMounted(() => {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.overflow-2{
-  background-color: rgba(0, 0, 0, 0.15);
-}
-@keyframes bounce {
-  0% {
-    transform: translate(0, 0);
-  }
 
-  25% {
-    transform: translate(-20%, 10%);
-    /* Adjust based on your desired path */
-  }
-
-  50% {
-    transform: translate(90%, 20%);
-    /* Adjust based on your desired path */
-  }
-
-  75% {
-    transform: translate(30%, 100%);
-    /* Adjust based on your desired path */
-  }
-
-  100% {
-    transform: translate(0, 40%);
-    /* Adjust based on your desired path */
-  }
-}
-
-.partners:nth-child(2) {
-  animation-delay: 1s;
-}
-
-.partners:nth-child(3) {
-  animation-delay: 2s;
-}
-
-.footer_img_1 {
-  transform: translateY(18%);
-}
-
-.partners {
-  width: 60px;
-  height: 60px;
-  margin: 1rem;
-  border-radius: 50%;
-  animation: bounce 5s infinite alternate ease-in-out;
-
-}
-
-.video-background {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  position: absolute;
-
-}
-
-.options {
-  display: flex;
-  align-items: center;
-  width: 300px;
-  padding: 10px;
-  border-radius: 10px;
-  color: #FaFaFa;
-  gap: .5rem;
-}
-
-.sections_containers_with_borders {
-  position: relative;
-  width: 100%;
-  height: 100px;
-  /* Adjust height as needed */
-  background-color: #0BB8BA;
-  /* Background color to match the wave color */
-}
-
-.sections_containers_with_borders::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  /* Adjust height as needed */
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%230BB8BA" fill-opacity="1" d="M0,192L48,202.7C96,213,192,235,288,213.3C384,192,480,128,576,128C672,128,768,192,864,208C960,224,1056,192,1152,154.7C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') repeat-x;
-  transform: rotate(180deg);
-  /* Invert the wave */
-  transform-origin: top;
-}
-
-/* .custom_border {
-  border-radius: 68% 32% 100% 0% / 24% 100% 0% 76%;
-} */
-
-
-.custom_border {
-  border-radius: 78% 22% 100% 0% / 0% 100% 0% 100%;
-}
-
-
-.custom_border2 {
-  border-radius: 0% 0% 20% 28% / 10% 10% 17% 16%;
-  overflow: hidden;
-}
-
-.community_image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: relative;
-
-}
-
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
 
 
 @media (min-width: 1024px) {
