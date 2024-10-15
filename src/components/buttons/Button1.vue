@@ -35,7 +35,15 @@
           console.warn(`allowed sizes are ${SIZES}`);
         }
       }
-    }
+    },
+    style:{
+      type: Object,
+      default: "default",
+    },
+    custom:{
+      type: String,
+      default: "default",
+    },
   });
 </script>
 <template>
@@ -43,6 +51,7 @@
     :type="btnType"
     class="w-full rounded-lg hover:scale-105"
     :class="[
+      custom,
       loading ? 'button-disabled' : variant,
       variant === 'default'
         ? 'button1'
@@ -64,6 +73,7 @@
               : ''
     ]"
     :disabled="loading"
+    :style="style"
   >
     {{ loading ? loadingText : btnText }}
   </button>
