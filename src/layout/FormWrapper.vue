@@ -9,7 +9,7 @@
 </script>
 <template>
   <!-- form wrapper -->
-  <div class="w-full lg:mx-9 xl:mx-14">
+  <div class="w-full px-5 sm:px-6 lg:px-16 xl:px-24">
     <h1
       class="font-bold text-3xl text-[var(--royal-blue)] text-center md:text-4xl lg:leading-tight lg:text-left"
     >
