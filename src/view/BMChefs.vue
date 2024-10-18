@@ -60,7 +60,7 @@
               class="flex items-center justify-center h-auto w-full lg:w-2/4"
             >
               <img
-                src="../assets/cooking1.png"
+                src="../assets/xx1/cooking1.png"
                 class="rounded-lg"
                 alt="cooking1"
               />
@@ -75,7 +75,7 @@
               How To Start A Cooking Career
             </h2>
             <img
-              src="../assets/progress.png"
+              src="../assets/xx1/progress.png"
               class="rounded-lg w-48"
               alt="cooking1"
             />
@@ -119,7 +119,7 @@
               class="flex items-center justify-center h-auto w-full lg:w-2/4"
             >
               <img
-                src="../assets/apply_chef.png"
+                src="../assets/xx1/apply_chef.png"
                 class="rounded-lg"
                 alt="cooking1"
               />
@@ -133,7 +133,7 @@
               class="flex items-center justify-center h-auto w-full lg:w-2/4"
             >
               <img
-                src="../assets/meal_plan.png"
+                src="../assets/xx1/meal_plan.png"
                 class="rounded-lg"
                 alt="cooking1"
               />
@@ -273,7 +273,7 @@
     background-position: center center;
     display: block;
     width: 100%;
-    background-image: url("../assets/bm_chef_hero.png");
+    background-image: url("../assets/xx1/bm_chef_hero.png");
   }
 
   .overlay {
