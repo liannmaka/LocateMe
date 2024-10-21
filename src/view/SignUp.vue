@@ -1,10 +1,10 @@
 <script setup>
+  import { ref } from "vue";
   import PhoneNumberInput from "../components/inputs/PhoneNumberInput.vue";
   import Button1 from "../components/buttons/Button1.vue";
   import Input from "../components/inputs/Input.vue";
   import onBoardingLayout from "../layout/onBoardingLayout.vue";
   import FormWrapper from "../layout/FormWrapper.vue";
-  import { ref } from "vue";
 
   const phone = ref("");
 </script>

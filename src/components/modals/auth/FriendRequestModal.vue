@@ -1,10 +1,11 @@
 <script setup>
+  import { ref, defineEmits } from "vue";
   import BaseLayout from "../BaseLayout.vue";
   import CancelSvg from "../../svg/CancelSvg.vue";
   import PhoneNumberInput from "../../inputs/PhoneNumberInput.vue";
   import Button1 from "../../buttons/Button1.vue";
-  import { defineEmits } from "vue";
 
+  const phone = ref("");
   const emit = defineEmits(["close"]);
 
   const close = () => {
@@ -24,7 +25,7 @@
               <div class="flex justify-between">
                 <div>
                   <div
-                    class="text-xl antialiased font-bold"
+                    class="text-xl antialiased font-bold text-[var(--royal-blue)]"
                   >
                     Send Friend Request
                   </div>
@@ -38,6 +39,7 @@
                 <PhoneNumberInput
                   label="Enter Friend's Phone Number"
                   v-model="phone"
+                  required
                 />
               </div>
             </div>
@@ -45,7 +47,7 @@
               <Button1
                 btn-type="button"
                 btn-text="Send Request"
-                variant="send"
+                variant="create"
                 size="sm"
                 class="mr-2"
               >
