@@ -10,9 +10,10 @@
       validator(value) {
         const VARIANTS = [
           "default",
-          "send",
+          "verify",
           "cancel",
-          "create"
+          "create",
+          "naked"
         ];
         const isPresent = types => type =>
           types.includes(type);
@@ -35,24 +36,30 @@
           console.warn(`allowed sizes are ${SIZES}`);
         }
       }
+    },
+    bordered: {
+      type: Boolean,
+      default: false
     }
   });
 </script>
 <template>
   <button
     :type="btnType"
-    class="w-full rounded-lg hover:scale-105"
+    class="w-full rounded-lg"
     :class="[
       loading ? 'button-disabled' : variant,
       variant === 'default'
         ? 'button1'
-        : variant === 'send'
-          ? 'send'
+        : variant === 'verify'
+          ? 'verify'
           : variant === 'cancel'
             ? 'cancel'
             : variant === 'create'
               ? 'create'
-              : '',
+              : variant === 'naked'
+                ? 'naked'
+                : '',
       size === 'xs'
         ? 'xtra-small'
         : size === 'sm'
@@ -61,7 +68,8 @@
             ? 'large'
             : size === 'default'
               ? ''
-              : ''
+              : '',
+      bordered ? 'bordered' : ''
     ]"
     :disabled="loading"
   >
@@ -81,8 +89,8 @@
     color: #fafafa;
   }
 
-  .send {
-    background-color: #4caf50;
+  .verify {
+    background-color: var(--bice-blue);
     color: #fafafa;
   }
 
@@ -95,6 +103,11 @@
   .create {
     background-color: var(--penn-blue);
     color: #fafafa;
+  }
+
+  .naked {
+    background: none;
+    padding: 0;
   }
 
   /* size */
@@ -114,5 +127,10 @@
     font-size: 1.125rem;
     font-weight: 500;
     padding: 0.7rem;
+  }
+
+  /* bordered */
+  .bordered {
+    border: 1px solid #fff;
   }
 </style>
