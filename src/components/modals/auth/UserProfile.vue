@@ -1,11 +1,10 @@
 <script setup>
   import BaseLayout from "../BaseLayout.vue";
   import CancelSvg from "../../svg/CancelSvg.vue";
-  import { defineEmits } from "vue";
 
-  const emit = defineEmits(["close"]);
-  const close = value => {
-    emit("close", value);
+  const emit = defineEmits(["closeUserProfile"]);
+  const closeUserProfile = value => {
+    emit("closeUserProfile", value);
   };
 </script>
 
@@ -21,7 +20,7 @@
           <div class="flex justify-between">
             <h1>User Profile</h1>
             <CancelSvg
-              @click="close(false)"
+              @click="closeUserProfile(false)"
               class="cursor-pointer"
             />
           </div>

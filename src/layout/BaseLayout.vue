@@ -42,7 +42,7 @@
 <template>
   <UserProfile
     v-if="isModalOpen && activeView === 'show-user-modal'"
-    @close="closeModal"
+    @closeUserProfile="closeModal"
   ></UserProfile>
   <FriendRequestModal
     v-if="
