@@ -4,6 +4,8 @@
     btnType: String,
     loading: Boolean,
     loadingText: String,
+    style: Object,
+    custom: String,
     variant: {
       type: String,
       default: "default",
@@ -48,6 +50,7 @@
     :type="btnType"
     class="w-full rounded-lg"
     :class="[
+      custom,
       loading ? 'button-disabled' : variant,
       variant === 'default'
         ? 'button1'
@@ -72,6 +75,7 @@
       bordered ? 'bordered' : ''
     ]"
     :disabled="loading"
+    :style="style"
   >
     {{ loading ? loadingText : btnText }}
   </button>

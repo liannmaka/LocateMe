@@ -7,14 +7,27 @@ const baseRoute = initialRoute.concat(appRoutes);
 export const router = createRouter({
   history: createWebHistory(),
   routes: baseRoute,
-  scrollBehavior() {
-    // always scroll to top
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve({ left: 0, top: 0 });
-      }, 100);
-    });
-  } // added scroll behavior to always return to the top of the page.
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: "smooth"
+      };
+    } else if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  }
+  // scrollBehavior() {
+  //   // always scroll to top
+  //   return new Promise(resolve => {
+  //     setTimeout(() => {
+  //       resolve({ left: 0, top: 0 });
+  //     }, 100);
+  //   });
+  // }
+  // added scroll behavior to always return to the top of the page.
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
