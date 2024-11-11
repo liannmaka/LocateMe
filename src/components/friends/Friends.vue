@@ -121,7 +121,7 @@
               class="flex items-center flex-col mt-5 justify-center gap-2"
             >
               <img
-                src="../../assets/nothing.png"
+                src="../../assets/xx1/nothing.png"
                 width="120"
                 height="120"
                 alt="no friends"
@@ -146,7 +146,7 @@
               class="flex items-center flex-col mt-5 justify-center gap-2"
             >
               <img
-                src="../../assets/nothing.png"
+                src="../../assets/xx1/nothing.png"
                 width="120"
                 height="120"
                 alt="no friends"
@@ -171,7 +171,7 @@
               class="flex items-center flex-col mt-5 justify-center gap-2"
             >
               <img
-                src="../../assets/nothing.png"
+                src="../../assets/xx1/nothing.png"
                 width="120"
                 height="120"
                 alt="no friends"

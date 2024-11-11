@@ -117,10 +117,21 @@
         .setLngLat(mapValue.lngLat)
         .addTo(mapValue.map);
 
-      mapValue.map.addSource("friends", {
-        type: "geojson",
-        data: friendsGeoJSON
-      });
+      // mapValue.map.addSource('friends', {
+      //     type: 'geojson',
+      //     data: friendsGeoJSON // friendsGeoJSON data
+      //   });
+
+      // mapValue.map.on('click', (e) => {
+      //
+      // })
+
+      //     friends.forEach(friend => {
+      // =======
+      //       mapValue.map.addSource("friends", {
+      //         type: "geojson",
+      //         data: friendsGeoJSON
+      //       });
 
       friends.forEach(friend => {
         // Create a DOM element for the marker
@@ -139,9 +150,7 @@
         })
           .setLngLat(friend.location)
           .setPopup(
-            new Popup({
-              offset: 25
-            }) // add popups
+            new Popup({ offset: 25 }) // add popups
               .setHTML(
                 `<strong>${friend.name}</strong><br>Last seen: ${friend.last_seen}`
               )
