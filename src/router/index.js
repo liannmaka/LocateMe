@@ -11,14 +11,14 @@ export const router = createRouter({
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth',
+        behavior: "smooth"
       };
     } else if (savedPosition) {
       return savedPosition;
     } else {
       return { top: 0 };
     }
-  },
+  }
   // scrollBehavior() {
   //   // always scroll to top
   //   return new Promise(resolve => {

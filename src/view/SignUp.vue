@@ -5,8 +5,24 @@
   import Input from "../components/inputs/Input.vue";
   import onBoardingLayout from "../layout/onBoardingLayout.vue";
   import FormWrapper from "../layout/FormWrapper.vue";
+  import VerificationModal from "../components/modals/auth/VerificationModal.vue";
 
   const phone = ref("");
+  const openModal = ref(false);
+
+  // will be used for integration
+  // const openVerificationModal = () => {
+  //   openModal.value = true;
+  // };
+
+  // will be used for integration
+  // const closeVerificationModal = () => {
+  //   openModal.value = false;
+  // };
+
+  const Register = () => {
+    console.log("Register");
+  };
 </script>
 
 <template>
@@ -21,7 +37,7 @@
         footerLink="Login"
         to="/login"
       >
-        <form>
+        <form @submit.prevent="Register">
           <div>
             <Input
               ariaLabel="firstname"
@@ -56,10 +72,15 @@
               btnText="Create account"
               variant="create"
               size="sm"
+              @click="openModal = true"
             />
           </div>
         </form>
       </FormWrapper>
+      <VerificationModal
+        v-if="openModal"
+        @closeVerificationModal="openModal = false"
+      />
     </div>
   </onBoardingLayout>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
   import { UserPlus, Group } from "@iconoir/vue";
-  import { ref, defineEmits } from "vue";
+  import { ref } from "vue";
 
   const showFriendModal = ref(false);
   const currentFriend = ref(null);

@@ -4,8 +4,14 @@
   import FormWrapper from "../layout/FormWrapper.vue";
   import PhoneNumberInput from "../components/inputs/PhoneNumberInput.vue";
   import Button1 from "../components/buttons/Button1.vue";
+  import VerificationModal from "../components/modals/auth/VerificationModal.vue";
 
   const phone = ref("");
+  const openModal = ref(false);
+
+  const Login = () => {
+    console.log("Login");
+  };
 </script>
 
 <template>
@@ -20,7 +26,7 @@
         footerLink="Get Started"
         to="/sign-up"
       >
-        <form>
+        <form @submit.prevent="Login">
           <div>
             <PhoneNumberInput
               label="WhatsApp Number"
@@ -39,10 +45,15 @@
               btnText="Log in"
               variant="create"
               size="sm"
+              @click="openModal = true"
             />
           </div>
         </form>
       </FormWrapper>
+      <VerificationModal
+        v-if="openModal"
+        @closeVerificationModal="openModal = false"
+      />
     </div>
   </onBoardingLayout>
 </template>

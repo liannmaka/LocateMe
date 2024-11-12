@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, defineEmits } from "vue";
+  import { ref } from "vue";
   import BaseLayout from "../BaseLayout.vue";
   import CancelSvg from "../../svg/CancelSvg.vue";
   import PhoneNumberInput from "../../inputs/PhoneNumberInput.vue";
@@ -18,7 +18,7 @@
     <template v-slot:modal-child>
       <div class="flex justify-center items-center h-full">
         <div
-          class="modal-content bg-white w-[400px] rounded-3xl py-4 px-6"
+          class="modal-content bg-white w-[400px] rounded-3xl py-4 px-6 mx-2"
         >
           <div>
             <div>
